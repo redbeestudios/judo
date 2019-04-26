@@ -1,0 +1,37 @@
+{
+  "name": "judo",
+  "version": "0.1.0",
+  "description": "SQL Stored Procedures Testing Made SIMPLE",
+  "scripts": {
+    "start": "cucumber-js --require src/cucumber/ features/",
+    "test": "jasmine --config=jasmine.json"
+  },
+  "bin": {
+    "judo": "./judo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TodoPago/base_de_datos.git"
+  },
+  "keywords": [
+    "cucumber.js",
+    "sql",
+    "server",
+    "bdd"
+  ],
+  "author": "joaquin@redb.ee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TodoPago/base_de_datos/issues"
+  },
+  "homepage": "https://github.com/TodoPago/base_de_datos#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cucumber": "^5.1.0",
+    "jasmine": "^3.4.0",
+    "rewire": "^4.0.1"
+  },
+  "dependencies": {
+    "mssql": "^5.0.5"
+  }
+}
