@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57800858-5c45-4b39-91a0-42ee26133fb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/judo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/sql/insertsSpec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jasmine.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/judo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cucumber/sql-hooks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cucumber/steps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/liquibase/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/operations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sql/insert.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sql/select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sql/truncate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+            <state relative-caret-position="494">
+              <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -113,6 +94,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="PsiViewer.ProjectComponent">
@@ -169,12 +151,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556310069003</updated>
-      <workItem from="1556310070519" duration="419000" />
+      <workItem from="1556310070519" duration="1133000" />
     </task>
+    <task id="LOCAL-00001" summary="setup: commiting mvp">
+      <created>1556310542679</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1556310542680</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="419000" />
+    <option name="totallyTimeSpent" value="1133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
@@ -214,6 +204,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="setup: commiting mvp" />
+    <option name="LAST_COMMIT_MESSAGE" value="setup: commiting mvp" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/judo">
       <provider selected="true" editor-type-id="text-editor">
@@ -243,8 +237,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+        <state relative-caret-position="494">
+          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
         </state>
       </provider>
     </entry>

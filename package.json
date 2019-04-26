@@ -25,13 +25,10 @@
     "url": "https://github.com/TodoPago/base_de_datos/issues"
   },
   "homepage": "https://github.com/TodoPago/base_de_datos#readme",
-  "devDependencies": {
+  "dependencies": {
     "chai": "^4.2.0",
     "cucumber": "^5.1.0",
     "jasmine": "^3.4.0",
-    "rewire": "^4.0.1"
-  },
-  "dependencies": {
     "mssql": "^5.0.5"
   }
 }
