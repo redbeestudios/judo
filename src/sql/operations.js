@@ -1,7 +1,7 @@
-const {sql, connect} = require('./pool');
-const insertInto = require('./sql/insert');
-const selectFrom = require('./sql/select');
-const truncateTable = require('./sql/truncate');
+const {sql, transaction} = require('./pool');
+const insertInto = require('./statements/insert');
+const selectFrom = require('./statements/select');
+const truncateTable = require('./statements/truncate');
 
 /**
  * @typedef {Object} SqlInput
@@ -28,8 +28,7 @@ const insert = async (table, data) => {
  * @returns {Promise<void>}
  */
 const exec = async (sp, args) => {
-    const pool = await connect;
-    const req = pool.request();
+    const req = request();
     if (args) {
         for (let arg in args) {
             if (args.hasOwnProperty(arg))
@@ -66,8 +65,20 @@ const truncate = async (table) => {
  * @returns {Promise<*>}
  */
 const query = async (query) => {
-    const pool = await connect;
-    return pool.request().query(query);
+    return request().query(query);
+};
+
+/**
+ * Get the correct request object.
+ *
+ * @returns {Request}
+ */
+const request = () => {
+    const t = transaction();
+    if (t)
+        return t.request();
+    else
+        return (new sql.Request());
 };
 
 module.exports = {

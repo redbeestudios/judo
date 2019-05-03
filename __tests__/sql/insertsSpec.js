@@ -1,4 +1,4 @@
-const inserts = require('../../src/sql/insert.js');
+const inserts = require('../../src/sql/statements/insert.js');
 
 describe('Create sql inserts from a collection of objects', function () {
 

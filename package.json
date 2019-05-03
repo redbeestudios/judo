@@ -7,7 +7,7 @@
     "test": "jasmine --config=jasmine.json"
   },
   "bin": {
-    "judo": "./judo"
+    "judo": "./bin/judo"
   },
   "repository": {
     "type": "git",

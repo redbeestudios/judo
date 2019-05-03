@@ -1,7 +1,7 @@
 const {Given, When, Then} = require('cucumber');
 const {expect} = require('chai');
 
-const {insert, exec, select, truncate, query} = require('../operations');
+const {insert, exec, select, truncate, query} = require('../sql/operations');
 const liquibase = require('../liquibase');
 
 function transform(hashes) {
