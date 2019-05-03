@@ -1,3 +1,5 @@
+const toSQLValue = require('../utils/to-sql-value');
+
 /**
  * Given a collection of rows create a string of sql INSERTs into the table
  *
@@ -57,20 +59,4 @@ function values(row) {
     return Object.values(row)
         .map(value => toSQLValue(value))
         .join(', ');
-}
-
-/**
- *
- * @param {*} value
- * @returns {string|*}
- */
-function toSQLValue(value) {
-    if (value === undefined || value === null)
-        return 'NULL';
-    else if (typeof value === 'string')
-        return `'${value}'`;
-    else if (typeof value === 'boolean')
-        return value ? 1 : 0;
-    else
-        return value;
 }

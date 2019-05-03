@@ -2,6 +2,7 @@ const {Given, When, Then} = require('cucumber');
 const {expect} = require('chai');
 
 const {insert, exec, select, truncate, query} = require('../sql/operations');
+const toSQLValue = require('../sql/utils/to-sql-value');
 const liquibase = require('../liquibase');
 
 function transform(hashes) {
@@ -66,19 +67,12 @@ const validateTableExactlyStep = function (table, data) {
 Then('{word} should have', validateTableExactlyStep);
 Then('{word} debería tener exactamente', validateTableExactlyStep);
 
-
-function toSqlValue(value) {
-    if (typeof value === 'boolean')
-        return value ? 1 : 0;
-    return value;
-}
-
 const validateTableContentStep = function (table, data) {
     const fields = data.hashes().length && Object.keys(data.hashes()[0]);
     const realData = transform(data.hashes());
     let where = realData.reduce((acc, cur) => {
         const ands = Object.keys(cur).reduce((acc2, key) => {
-            acc2.push(`${key} = ${toSqlValue(cur[key])}`);
+            acc2.push(`${key} = ${toSQLValue(cur[key])}`);
             return acc2;
         }, []).join(' AND ');
         acc.push(`(${ands})`);

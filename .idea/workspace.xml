@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="57800858-5c45-4b39-91a0-42ee26133fb8" name="Default Changelist" comment="feat(docker): added dockerfile">
-      <change afterPath="$PROJECT_DIR$/bin/judo" afterDir="false" />
+    <list default="true" id="57800858-5c45-4b39-91a0-42ee26133fb8" name="Default Changelist" comment="feat(transaction): run scenario inside transaction">
+      <change afterPath="$PROJECT_DIR$/__tests__/sql/utils/to-sql-value.spec.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/features/test.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sql/pool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sql/utils/to-sql-value.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/sql/insertsSpec.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/sql/insertsSpec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/judo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cucumber/sql-hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/cucumber/sql-hooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/sql/insertsSpec.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/sql/statements/inserts.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/judo" beforeDir="false" afterPath="$PROJECT_DIR$/bin/judo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasmine.json" beforeDir="false" afterPath="$PROJECT_DIR$/jasmine.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cucumber/steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/cucumber/steps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/operations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/insert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/statements/insert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/select.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/statements/select.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/truncate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/statements/truncate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sql/statements/insert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/statements/insert.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,10 +62,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cucumber/sql-hooks.js">
+        <entry file="file://$PROJECT_DIR$/bin/judo">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+            <state relative-caret-position="209">
+              <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -78,26 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/test.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4925e9c7-53b7-4f35-9127-598e085b671d/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+            <state relative-caret-position="266">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -105,17 +82,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cucumber/steps.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+            <state relative-caret-position="236">
+              <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/__tests__/sql/utils/to-sql-value.spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sql/pool.js">
+        <entry file="file://$PROJECT_DIR$/jasmine.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+            <state relative-caret-position="133">
+              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/inserts.spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="59" selection-start-column="59" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sql/utils/to-sql-value.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sql/statements/insert.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -123,8 +145,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            <state relative-caret-position="335">
+              <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -144,6 +166,9 @@
       <find>default</find>
       <find>after</find>
       <find>console.lo</find>
+      <find>debería co</find>
+      <find>toSQLValue</find>
+      <find>toSqlVal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,19 +182,30 @@
         <option value="$PROJECT_DIR$/judo" />
         <option value="$PROJECT_DIR$/judo.js" />
         <option value="$PROJECT_DIR$/src/operations.js" />
-        <option value="$PROJECT_DIR$/bin/judo" />
         <option value="$PROJECT_DIR$/src/pool.js" />
         <option value="$PROJECT_DIR$/bin/test" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/cucumber/steps.js" />
         <option value="$PROJECT_DIR$/src/sql/operations.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4925e9c7-53b7-4f35-9127-598e085b671d/console.sql" />
         <option value="$PROJECT_DIR$/src/cucumber/sql-hooks.js" />
-        <option value="$PROJECT_DIR$/features/test.feature" />
         <option value="$PROJECT_DIR$/src/sql/pool.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/bin/judo" />
+        <option value="$PROJECT_DIR$/src/sql/statements/insert.js" />
+        <option value="$PROJECT_DIR$/src/cucumber/steps.js" />
+        <option value="$PROJECT_DIR$/features/test.feature" />
+        <option value="$PROJECT_DIR$/jasmine.json" />
+        <option value="$PROJECT_DIR$/__tests__/sql/statements/inserts.spec.js" />
+        <option value="$PROJECT_DIR$/__tests__/sql/utils/to-sql-value.spec.js" />
+        <option value="$PROJECT_DIR$/src/sql/utils/to-sql-value.js" />
       </list>
     </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1920" />
@@ -195,6 +231,56 @@
               <item name="judo" type="462c0819:PsiDirectoryNode" />
               <item name="__tests__" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="__tests__" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="__tests__" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+              <item name="statements" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="__tests__" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="cucumber" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="liquibase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+              <item name="statements" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -210,7 +296,10 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
   <component name="PsiViewer.ProjectComponent">
     <option name="HIGHLIGHT" value="false" />
@@ -225,6 +314,7 @@
       <recent name="$PROJECT_DIR$/bin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/__tests__/sql/statements" />
       <recent name="$PROJECT_DIR$/src/sql" />
       <recent name="$PROJECT_DIR$/src/sql/statements" />
       <recent name="$PROJECT_DIR$/bin" />
@@ -286,7 +376,7 @@
       <option name="presentableId" value="Default" />
       <updated>1556310069003</updated>
       <workItem from="1556310070519" duration="6272000" />
-      <workItem from="1556906961216" duration="11942000" />
+      <workItem from="1556906961216" duration="13364000" />
     </task>
     <task id="LOCAL-00001" summary="setup: commiting mvp">
       <created>1556310542679</created>
@@ -309,34 +399,55 @@
       <option name="project" value="LOCAL" />
       <updated>1556316878618</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat(transaction): run scenario inside transaction&#10;&#10; - refactored project tree&#10; - added support for running scenario inside transaction">
+      <created>1556919889592</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1556919889592</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_Tests - 2019.05.03 at 17h 06m 38s.xml">
+    <history-entry file="All_Tests - 2019.05.03 at 18h 59m 19s.xml">
       <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="insertsSpec_js - 2019.05.03 at 17h 06m 55s.xml">
-      <configuration name="insertsSpec.js" configurationId="JavascriptTestRunnerJasmine" />
-    </history-entry>
-    <history-entry file="All_Tests - 2019.05.03 at 17h 07m 20s.xml">
+    <history-entry file="All_Tests - 2019.05.03 at 19h 00m 07s.xml">
       <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.05.03 at 17h 29m 57s.xml">
+    <history-entry file="All_Tests - 2019.05.03 at 19h 00m 40s.xml">
       <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.05.03 at 17h 30m 34s.xml">
+    <history-entry file="All_Tests - 2019.05.03 at 19h 01m 23s.xml">
+      <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.05.03 at 19h 01m 55s.xml">
+      <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.05.03 at 19h 02m 09s.xml">
+      <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.05.03 at 19h 02m 15s.xml">
+      <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.05.03 at 19h 02m 43s.xml">
+      <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.05.03 at 19h 03m 00s.xml">
+      <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.05.03 at 19h 03m 26s.xml">
       <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18214000" />
+    <option name="totallyTimeSpent" value="19636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15026738" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15026738" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -344,9 +455,10 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" weight="0.32943678" />
+      <window_info anchor="bottom" id="Messages" weight="0.32943678" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32943678" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32943678" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -407,7 +519,9 @@
     <MESSAGE value="setup: commiting mvp" />
     <MESSAGE value="fix(build): update dependencies" />
     <MESSAGE value="feat(docker): added dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(docker): added dockerfile" />
+    <MESSAGE value="feat(transaction): run scenario inside transaction" />
+    <MESSAGE value="feat(transaction): run scenario inside transaction&#10;&#10; - refactored project tree&#10; - added support for running scenario inside transaction" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(transaction): run scenario inside transaction&#10;&#10; - refactored project tree&#10; - added support for running scenario inside transaction" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.js" />
@@ -511,20 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/judo">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://4925e9c7-53b7-4f35-9127-598e085b671d/database/Configurations/schema/dbo/table/Movimiento_Presentado_MP">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -532,13 +632,6 @@
           <column-attributes>
             <column name="%%physloc%%" enabled="false" />
           </column-attributes>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cucumber/steps.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -569,20 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/test.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4925e9c7-53b7-4f35-9127-598e085b671d/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -606,17 +685,159 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="4" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/statements/insert.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/test.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/judo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cucumber/steps.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jasmine.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/inserts.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="59" selection-start-column="59" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/utils/to-sql-value.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/sql/utils/to-sql-value.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>JFlex &amp; idea-flex.skeleton</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>judo</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
