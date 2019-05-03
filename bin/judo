@@ -1,12 +1,4 @@
 #!/usr/bin/env node
 
-// if [[ $# == 0 ]]; then
-// npx cucumber-js . --require ./src/cucumber/
-// elif [[ $2 == @* ]]; then
-// npx cucumber-js "$1" --require ./src/cucumber/ --tags "$2"
-// else
-// npx cucumber-js "$1" --require ./src/cucumber/ --name "$2"
-// fi
-
 require('../src').run()
-    .then(() => console.log('Judo: All tests passed'));
+    .then(() => console.log('Judo: All tests finished'));
