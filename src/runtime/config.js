@@ -3,7 +3,7 @@ const config = {
         user: process.env.SQL_USER || 'sa',
         password: process.env.SQL_PASSWORD || 'Password01',
         server: process.env.SQL_HOST || 'localhost',
-        port: process.env.SQL_PORT || 1433,
+        port: Number(process.env.SQL_PORT) || 1433,
         database: process.env.SQL_DATABASE || 'Configurations',
         pool: {
             max: 1,
@@ -24,4 +24,13 @@ Object.keys(config).forEach(key => {
     }
 });
 
-module.exports = config;
+module.exports = (overrides) => {
+    if (overrides) {
+        // TODO: enable deep merge of objects
+        for (let key in overrides) {
+            if (overrides.hasOwnProperty(key) && config.hasOwnProperty(key))
+                Object.assign(config[key], overrides[key]);
+        }
+    }
+    return config;
+};

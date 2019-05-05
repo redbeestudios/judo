@@ -1,5 +1,5 @@
 const sql = require('mssql');
-const config = require('../runtime/config');
+const config = require('../runtime/config')();
 
 const close = () => {
     return sql.close();
