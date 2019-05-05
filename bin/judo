@@ -1,4 +1,6 @@
 #!/usr/bin/env node
 
-require('../src').run()
-    .then(() => console.log('Judo: All tests finished'));
+require('../src')
+    .run()
+    .then(() => console.log('DONE'))
+    .catch(console.error);

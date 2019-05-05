@@ -27,6 +27,7 @@
   "homepage": "https://github.com/TodoPago/base_de_datos#readme",
   "dependencies": {
     "chai": "^4.2.0",
+    "chalk": "^2.4.2",
     "cucumber": "^5.1.0",
     "jasmine": "^3.4.0",
     "mssql": "^5.0.5"

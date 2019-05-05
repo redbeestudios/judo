@@ -1,5 +1,6 @@
 const {After, AfterAll, Before, BeforeAll} = require('cucumber');
 const {connect, close, newTransaction, transaction} = require('../sql/pool');
+const config = require('../runtime/config');
 
 BeforeAll(function () {
     return connect();
@@ -11,7 +12,10 @@ Before(function () {
 });
 
 After(function () {
-    return transaction().rollback();
+    if (config.judo.sandbox)
+        return transaction().commit();
+    else
+        return transaction().rollback();
 });
 
 
