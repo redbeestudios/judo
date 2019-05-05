@@ -1,5 +1,7 @@
 const {Given, When, Then} = require('cucumber');
 const {expect} = require('chai');
+const moment = require('moment');
+moment.suppressDeprecationWarnings = true;
 
 const {insert, exec, select, truncate, query} = require('../sql/operations');
 const toSQLValue = require('../sql/utils/to-sql-value');
@@ -12,6 +14,11 @@ function transform(hashes) {
                 each[key] = eval(each[key]);
             } catch (e) {
                 each[key] = each[key];
+            }
+            if (isNaN(each[key])) {
+                if (moment(each[key]).isValid()) {
+                    each[key] = moment.utc(each[key]).toDate();
+                }
             }
         });
         return each;
@@ -54,7 +61,7 @@ const exectueSpWithArgumentsStep = function (storedProcedure, args) {
 };
 
 When('I execute {word} with args:', exectueSpWithArgumentsStep);
-When('ejecuto el sp {word} con los argumentos:', exectueSpWithArgumentsStep)
+When('ejecuto el sp {word} con los argumentos:', exectueSpWithArgumentsStep);
 
 const validateTableExactlyStep = function (table, data) {
     let fields = data.hashes().length && Object.keys(data.hashes()[0]);

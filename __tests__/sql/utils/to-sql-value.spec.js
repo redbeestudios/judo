@@ -6,6 +6,10 @@ describe('Convert js values to sql', function () {
         expect(toSQLValue('word')).toEqual('\'word\'');
     });
 
+    it('should add quotes to string even if number', function () {
+        expect(toSQLValue('1')).toEqual('\'1\'');
+    });
+
     it('should leave number as is', function () {
         expect(toSQLValue(1)).toEqual(1);
     });
@@ -25,4 +29,9 @@ describe('Convert js values to sql', function () {
     it('should convert undefined to NULL', function () {
         expect(toSQLValue(undefined)).toEqual('NULL');
     });
+
+    it('should convert Date to SQL datetime accepted format', function () {
+        let d = new Date('2019-05-01 00:00:00');
+        expect(toSQLValue(d)).toEqual('\'2019-05-01 03:00:00\'');
+    })
 });

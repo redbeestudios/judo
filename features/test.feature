@@ -5,7 +5,8 @@ Feature: judo works
   CREATE TABLE my_test_table (
     my_letter VARCHAR,
     my_number INT,
-    my_boolean BIT
+    my_boolean BIT,
+    my_date DATETIME
   );
   """
 
@@ -15,9 +16,9 @@ Feature: judo works
   Scenario: add a row to a table
 
     Given a table my_test_table
-      | my_letter | my_number | my_boolean |
-      | A         | 42        | true       |
+      | my_letter | my_number | my_boolean | my_date             |
+      | A         | 42        | true       | 2019-03-01 00:00:00 |
 
     Then my_test_table should have
-      | my_letter | my_number | my_boolean |
-      | A         | 42        | true       |
+      | my_letter | my_number | my_boolean | my_date             |
+      | A         | 42        | true       | 2019-03-01 00:00:00 |
