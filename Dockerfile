@@ -6,4 +6,4 @@ COPY . .
 
 RUN npm install
 
-ENTRYPOINT [ "./judo" ]
+ENTRYPOINT [ "./bin/judo" ]

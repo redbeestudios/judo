@@ -6,5 +6,5 @@
  * @returns {string}
  */
 module.exports = function (table, fields) {
-    return `SELECT ${(fields && fields.join(',')) || '*'} FROM ${table}`;
+    return `SELECT ${(fields && fields.join(', ')) || '*'} FROM ${table}`;
 };
