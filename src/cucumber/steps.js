@@ -1,29 +1,10 @@
 const {Given, When, Then} = require('cucumber');
 const {expect} = require('chai');
-const moment = require('moment');
-moment.suppressDeprecationWarnings = true;
+const transform = require('./transform-data');
 
 const {insert, exec, select, truncate, query} = require('../sql/operations');
-const toSQLValue = require('../sql/utils/to-sql-value');
+const whereEachRow = require('../sql/statements/helpers/where-each-row');
 const liquibase = require('../liquibase');
-
-function transform(hashes) {
-    return hashes.map(each => {
-        Object.keys(each).forEach(key => {
-            try {
-                each[key] = eval(each[key]);
-            } catch (e) {
-                each[key] = each[key];
-            }
-            if (isNaN(each[key])) {
-                if (moment(each[key]).isValid()) {
-                    each[key] = moment.utc(each[key]).toDate();
-                }
-            }
-        });
-        return each;
-    });
-}
 
 const truncateTableStep = function (table) {
     return truncate(table);
@@ -34,7 +15,8 @@ Given('{word} está vacia', truncateTableStep);
 
 
 const insertIntoTableStep = function (table, data) {
-    return insert(table, transform(data.hashes()));
+    this.b = 'b';
+    return insert(table, transform.call(this, data.hashes()));
 };
 
 Given('a table {word}', insertIntoTableStep);
@@ -65,7 +47,7 @@ When('ejecuto el sp {word} con los argumentos:', exectueSpWithArgumentsStep);
 
 const validateTableExactlyStep = function (table, data) {
     let fields = data.hashes().length && Object.keys(data.hashes()[0]);
-    let realData = transform(data.hashes());
+    let realData = transform.call(this, data.hashes());
 
     return select(table, fields)
         .then(result => expect(result.recordset).deep.equal(realData));
@@ -76,16 +58,8 @@ Then('{word} debería tener exactamente', validateTableExactlyStep);
 
 const validateTableContentStep = function (table, data) {
     const fields = data.hashes().length && Object.keys(data.hashes()[0]);
-    const realData = transform(data.hashes());
-    let where = realData.reduce((acc, cur) => {
-        const ands = Object.keys(cur).reduce((acc2, key) => {
-            acc2.push(`${key} = ${toSQLValue(cur[key])}`);
-            return acc2;
-        }, []).join(' AND ');
-        acc.push(`(${ands})`);
-        return acc;
-    }, []).join(' OR ');
-    return query(`SELECT ${fields.join(',')} FROM ${table} WHERE ${where}`)
+    const realData = transform.call(this, data.hashes());
+    return query(`SELECT ${fields.join(',')} FROM ${table} WHERE ${whereEachRow(realData)}`)
         .then(result => expect(result.recordset).deep.equal(realData));
 };
 
@@ -99,6 +73,14 @@ const tableIsEmptyStep = function (table) {
 
 Then('{word} should be empty', tableIsEmptyStep);
 Then('{word} debería estar vacia', tableIsEmptyStep);
+
+
+const variableIsEqualToStep = function (variable, value) {
+    expect(this[variable]).equal(value);
+};
+
+Then('variable {word} should equal {word}', variableIsEqualToStep);
+Then('la variable {word} debería ser igual a {word}', variableIsEqualToStep);
 
 
 const runLiquibaseStep = function (fileName) {

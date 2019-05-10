@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57800858-5c45-4b39-91a0-42ee26133fb8" name="Default Changelist" comment="test(integration): adding feature for integration tests">
-      <change afterPath="$PROJECT_DIR$/__tests__/sql/statements/select.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__tests__/cucumber/transform-data.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/cucumber/transform-data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sql/statements/helpers/where-each-row.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/test.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/test.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cucumber/steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/cucumber/steps.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sql/operations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/operations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sql/pool.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/pool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/statements/select.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/statements/select.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,98 +67,79 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cucumber/steps.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cucumber/transform-data.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/select.spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/sql/utils/to-sql-value.spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1273">
-              <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sql/statements/truncate.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sql/statements/select.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/inserts.spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" selection-end-line="83" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/judo">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/cucumber/steps.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1501">
+                  <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="38">
+                  <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="850">
+                  <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/package.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="114">
+                  <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/sql/statements/helpers/where-each-row.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="133">
+                  <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/cucumber/transform-data.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -174,7 +155,6 @@
       <find>after</find>
       <find>console.lo</find>
       <find>debería co</find>
-      <find>toSQLValue</find>
       <find>toSqlVal</find>
       <find>sandbox</find>
       <find>connect</find>
@@ -186,9 +166,14 @@
       <find>moment</find>
       <find>insert</find>
       <find>each[key]</find>
+      <find>transform</find>
+      <find>toSQLValue</find>
+      <find>console.log</find>
+      <find>value</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
+      <replace>transformed</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -212,7 +197,6 @@
         <option value="$PROJECT_DIR$/sql.conf.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4925e9c7-53b7-4f35-9127-598e085b671d/console.sql" />
         <option value="$PROJECT_DIR$/src/runtime/config.js" />
-        <option value="$PROJECT_DIR$/features/test.feature" />
         <option value="$PROJECT_DIR$/src/utils/date.js" />
         <option value="$PROJECT_DIR$/__tests__/utils/date.spec.js" />
         <option value="$PROJECT_DIR$/src/sql/utils/to-sql-value.js" />
@@ -226,7 +210,12 @@
         <option value="$PROJECT_DIR$/src/sql/statements/select.js" />
         <option value="$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js" />
         <option value="$PROJECT_DIR$/__tests__/sql/statements/select.spec.js" />
+        <option value="$PROJECT_DIR$/__tests__/cucumber/transform-data.js" />
+        <option value="$PROJECT_DIR$/features/test.feature" />
+        <option value="$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js" />
         <option value="$PROJECT_DIR$/src/cucumber/steps.js" />
+        <option value="$PROJECT_DIR$/src/sql/statements/helpers/where-each-row.js" />
+        <option value="$PROJECT_DIR$/__tests__/cucumber/transform-data.spec.js" />
         <option value="$PROJECT_DIR$/src/cucumber/transform-data.js" />
       </list>
     </option>
@@ -264,6 +253,12 @@
               <item name="judo" type="b2602c69:ProjectViewProjectNode" />
               <item name="judo" type="462c0819:PsiDirectoryNode" />
               <item name="__tests__" type="462c0819:PsiDirectoryNode" />
+              <item name="cucumber" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="__tests__" type="462c0819:PsiDirectoryNode" />
               <item name="sql" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -272,6 +267,14 @@
               <item name="__tests__" type="462c0819:PsiDirectoryNode" />
               <item name="sql" type="462c0819:PsiDirectoryNode" />
               <item name="statements" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="__tests__" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+              <item name="statements" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="judo" type="b2602c69:ProjectViewProjectNode" />
@@ -319,6 +322,21 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sql" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+              <item name="statements" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="judo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="judo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+              <item name="statements" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -331,7 +349,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="11.14.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/__tests__/sql/statements" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/__tests__/sql/statements/helpers" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -351,6 +369,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/__tests__/sql/statements/helpers" />
       <recent name="$PROJECT_DIR$/__tests__/sql/statements" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/bin" />
@@ -397,49 +416,57 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Create sql inserts from a collection of objects" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
+    <configuration name="Create a concatenation of ANDS OR ANDS for each row in data" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jasmine-executable value="bin/jasmine.js" />
       <scope value="SUITE" />
-      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/select.spec.js" />
+      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js" />
       <test-names>
-        <test-name value="Create sql inserts from a collection of objects" />
+        <test-name value="Create a concatenation of ANDS OR ANDS for each row in data" />
       </test-names>
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Create sql inserts from a collection of objects.should create TRUNCATE statement given a table name" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
+    <configuration name="Create a concatenation of ORs for each row in data" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jasmine-executable value="bin/jasmine.js" />
-      <scope value="TEST" />
-      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js" />
+      <scope value="SUITE" />
+      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js" />
       <test-names>
-        <test-name value="Create sql inserts from a collection of objects" />
-        <test-name value="should create TRUNCATE statement given a table name" />
+        <test-name value="Create a concatenation of ORs for each row in data" />
       </test-names>
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with many field" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
+    <configuration name="Create a concatenation of (ANDS) OR (ANDS) for each row in data" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jasmine-executable value="bin/jasmine.js" />
-      <scope value="TEST" />
-      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/select.spec.js" />
+      <scope value="SUITE" />
+      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js" />
       <test-names>
-        <test-name value="Create sql inserts from a collection of objects" />
-        <test-name value="should create select statement given an array with many field" />
+        <test-name value="Create a concatenation of (ANDS) OR (ANDS) for each row in data" />
       </test-names>
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with one field" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
+    <configuration name="Create a concatenation of for each row in data" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jasmine-executable value="bin/jasmine.js" />
-      <scope value="TEST" />
-      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/select.spec.js" />
+      <scope value="SUITE" />
+      <spec-file value="$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js" />
       <test-names>
-        <test-name value="Create sql inserts from a collection of objects" />
-        <test-name value="should create select statement given an array with one field" />
+        <test-name value="Create a concatenation of for each row in data" />
+      </test-names>
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="transform data from cucubmer data tables" type="JavascriptTestRunnerJasmine" factoryName="Jasmine" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jasmine-executable value="bin/jasmine.js" />
+      <scope value="SUITE" />
+      <spec-file value="$PROJECT_DIR$/__tests__/cucumber/transform-data.spec.js" />
+      <test-names>
+        <test-name value="transform data from cucubmer data tables" />
       </test-names>
       <envs />
       <method v="2" />
@@ -453,23 +480,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="test" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jasmine.Create sql inserts from a collection of objects.should create TRUNCATE statement given a table name" />
-        <item itemvalue="Jasmine.Create sql inserts from a collection of objects" />
-        <item itemvalue="Jasmine.Create sql inserts from a collection of objects.should create select statement given an array with many field" />
-        <item itemvalue="Jasmine.Create sql inserts from a collection of objects.should create select statement given an array with one field" />
-        <item itemvalue="npm.test" />
+        <item itemvalue="Jasmine.transform data from cucubmer data tables" />
+        <item itemvalue="Jasmine.Create a concatenation of ORs for each row in data" />
+        <item itemvalue="Jasmine.Create a concatenation of ANDS OR ANDS for each row in data" />
+        <item itemvalue="Jasmine.Create a concatenation of (ANDS) OR (ANDS) for each row in data" />
+        <item itemvalue="Jasmine.Create a concatenation of for each row in data" />
       </list>
     </recent_temporary>
   </component>
@@ -489,7 +506,8 @@
       <workItem from="1557156842262" duration="1903000" />
       <workItem from="1557193059513" duration="948000" />
       <workItem from="1557262330106" duration="3273000" />
-      <workItem from="1557440358673" duration="1059000" />
+      <workItem from="1557440358673" duration="6855000" />
+      <workItem from="1557495480732" duration="6134000" />
     </task>
     <task id="LOCAL-00001" summary="setup: commiting mvp">
       <created>1556310542679</created>
@@ -561,49 +579,56 @@
       <option name="project" value="LOCAL" />
       <updated>1557095883725</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="test(units): sql statements coverage">
+      <created>1557441642021</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1557441642021</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects_should_create_select_statement_given_an_array_with_one_field - 2019.05.09 at 19h 22m 07s.xml">
-      <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with one field" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 40m 23s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects_should_create_select_statement_given_an_array_with_one_field - 2019.05.09 at 19h 22m 50s.xml">
-      <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with one field" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 40m 58s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects_should_create_select_statement_given_an_array_with_many_field - 2019.05.09 at 19h 22m 51s.xml">
-      <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with many field" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 41m 22s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects_should_create_select_statement_given_an_array_with_many_field - 2019.05.09 at 19h 23m 23s.xml">
-      <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with many field" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 43m 04s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects_should_create_select_statement_given_an_array_with_many_field - 2019.05.09 at 19h 23m 29s.xml">
-      <configuration name="Create sql inserts from a collection of objects.should create select statement given an array with many field" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 43m 28s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects - 2019.05.09 at 19h 23m 35s.xml">
-      <configuration name="Create sql inserts from a collection of objects" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 46m 18s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects - 2019.05.09 at 19h 24m 26s.xml">
-      <configuration name="Create sql inserts from a collection of objects" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 46m 43s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="Create_sql_inserts_from_a_collection_of_objects_should_create_TRUNCATE_statement_given_a_table_name - 2019.05.09 at 19h 25m 57s.xml">
-      <configuration name="Create sql inserts from a collection of objects.should create TRUNCATE statement given a table name" configurationId="JavascriptTestRunnerJasmine" />
+    <history-entry file="transform_data_from_cucubmer_data_tables - 2019.05.10 at 12h 47m 12s.xml">
+      <configuration name="transform data from cucubmer data tables" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.05.09 at 19h 27m 03s.xml">
+    <history-entry file="All_Tests - 2019.05.10 at 12h 47m 59s.xml">
       <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.05.09 at 19h 27m 41s.xml">
+    <history-entry file="All_Tests - 2019.05.10 at 13h 14m 09s.xml">
       <configuration name="All Tests" configurationId="JavascriptTestRunnerJasmine" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49790000" />
+    <option name="totallyTimeSpent" value="61720000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1052" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18449198" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18449198" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -612,7 +637,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32858709" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32858709" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32837406" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45892662" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -637,26 +662,28 @@
       <window_info anchor="right" id="Database" order="9" weight="0.22673796" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15026738" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18449198" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32943678" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32943678" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32943678" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32943678" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32858709" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32858709" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.45892662" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32943678" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Database Console" order="12" weight="0.32858709" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32858709" />
+      <window_info anchor="bottom" id="TypeScript" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -666,7 +693,7 @@
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info active="true" anchor="right" id="Database" order="9" visible="true" weight="0.22673796" />
+      <window_info anchor="right" id="Database" order="9" weight="0.22673796" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,7 +711,8 @@
     <MESSAGE value="feat(config): receive configuration as cli arguments" />
     <MESSAGE value="test(integration): adding feature for integration tests" />
     <MESSAGE value="feat(sql): can assert on datetime fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): can assert on datetime fields" />
+    <MESSAGE value="test(units): sql statements coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="test(units): sql statements coverage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -699,6 +727,16 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>this.hello</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this['hello']</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>if (value instanceOf Date) 0</expression-string>
         <language-id>JavaScript</language-id>
@@ -734,32 +772,9 @@
         <language-id>JavaScript</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>value.includes(':')</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>value.includes('-')</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mssql/lib/msnodesqlv8.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="299" column="6" selection-start-line="299" selection-start-column="6" selection-end-line="299" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mssql/bin/mssql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mssql/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -923,13 +938,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/date.js" />
     <entry file="file://$PROJECT_DIR$/__tests__/utils/date.spec.js" />
-    <entry file="file://$PROJECT_DIR$/features/test.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://4925e9c7-53b7-4f35-9127-598e085b671d/database/Configurations/schema/dbo/table/my_test_table">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -944,13 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="1394" column="36" selection-start-line="1394" selection-start-column="36" selection-end-line="1394" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -975,59 +976,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/judo">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/sql/operations.spec.js" />
     <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/inserts.spec.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sql/statements/select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/select.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/sql/operations.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sql/statements/truncate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -1038,24 +991,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
+    <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/select.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+        <state relative-caret-position="171">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cucumber/steps.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1501">
+          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/truncate.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/test.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/statements/helpers/where-each-row.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/sql/statements/helpers/where-each-row.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/cucumber/transform-data.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1197">
+          <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/judo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/statements/select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/statements/truncate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sql/operations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cucumber/transform-data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="323">
+          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
         </state>
       </provider>
     </entry>
