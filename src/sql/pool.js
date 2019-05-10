@@ -17,8 +17,21 @@ const newTransaction = () => {
 
 const transaction = () => globalTransaction;
 
+/**
+ * Get the correct request object.
+ *
+ * @returns {Request}
+ */
+const request = () => {
+    if (globalTransaction)
+        return globalTransaction.request();
+    else
+        return (new sql.Request());
+};
+
 module.exports = {
     sql,
+    request,
     transaction,
     newTransaction,
     connect,

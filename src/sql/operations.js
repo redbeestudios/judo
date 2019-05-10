@@ -1,4 +1,4 @@
-const {sql, transaction} = require('./pool');
+const {sql, request} = require('./pool');
 const insertInto = require('./statements/insert');
 const selectFrom = require('./statements/select');
 const truncateTable = require('./statements/truncate');
@@ -66,19 +66,6 @@ const truncate = async (table) => {
  */
 const query = async (query) => {
     return request().query(query);
-};
-
-/**
- * Get the correct request object.
- *
- * @returns {Request}
- */
-const request = () => {
-    const t = transaction();
-    if (t)
-        return t.request();
-    else
-        return (new sql.Request());
 };
 
 module.exports = {
