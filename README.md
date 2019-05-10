@@ -22,15 +22,35 @@
         }
     };
     ```
-1. Crear un archivo `.feature` dentro de `__coverage/features/`. Y escribír los escenarios utilizando la [sintaxis de gherking](https://cucumber.io/docs/gherkin/reference/) y los [steps disponibles]()
+1. Crear archivos `.feature`. Y escribír los escenarios utilizando la [sintaxis de gherking](https://cucumber.io/docs/gherkin/reference/) y los [steps disponibles](#steps-disponibles)
 2. Correr judo:
     ```bash
-    $ ./judo [name_of_scenario|@tag]
+    $ ./bin/judo [features_dir]
     ```
 
 Tambien es posible correr cucumber-js con Intellij (instrucciones en el futuro), hay que bajarse el plugin y configurar.
+
+### Configuración
+
+#### Conexión SQL
+Por defecto Judo establece una conexión contra una base local de SQL Server. La siguiente tabla indica sus valores y como sobreescribirlos:
+
+|          	| default          	| env variables 	| cli args     	| sql.conf.js 	|
+|----------	|------------------	|---------------	|--------------	|-------------	|
+| user     	| 'sa'             	| SQL_USER      	| sql.user     	| user        	|
+| password 	| 'Password01'     	| SQL_PASSWORD  	| sql.password 	| password    	|
+| server   	| 'localhost'      	| SQL_SERVER    	| sql.server   	| server      	|
+| port     	| 1433             	| SQL_PORT      	| sql.port     	| port        	|
+| database 	| 'Configurations' 	| SQL_DATABASE  	| sql.database 	| database    	|
+
+#### Sandbox
+Por defecto cada test se ejecuta dentro de una trasaccion, la cual es rollbackeada al finalizar el test. Si deseamos persistir los cambios podemos informarle a Judo que estamos en un ambiente "sandbox":
+```bash
+$ judo [features_dir] --judo.sandbox
+```
     
-## Steps Disponibles (Given, When, Then)
+## Steps Disponibles
+(Given, When, Then)
 
 ### Dada {tableName} está vacia
 > Given {tableName} is empty
