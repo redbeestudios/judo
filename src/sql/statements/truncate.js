@@ -5,5 +5,5 @@
  * @returns {string} - a SQL query
  */
 module.exports = function (table) {
-    return `TRUNCATE TABLE ${table}`;
+    return `DELETE FROM ${table};`;
 };

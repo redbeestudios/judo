@@ -55,7 +55,7 @@ $ judo [features_dir] --judo.sandbox
 ### Dada {tableName} está vacia
 > Given {tableName} is empty
 
-Corre en la base `TRUNCATE TABLE {tableName}`
+Corre en la base `DELETE FROM {tableName};`
 
 Ejemplo:
 ```gherkin
