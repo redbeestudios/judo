@@ -30,3 +30,9 @@ Feature: judo works
       | letter = a |
 
     Then variable letter should equal a
+
+  Scenario: i store a variable
+
+    Given I save world as hello
+
+    Then variable hello should equal world

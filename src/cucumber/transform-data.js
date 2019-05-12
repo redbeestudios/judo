@@ -3,39 +3,48 @@ moment.suppressDeprecationWarnings = true;
 
 /**
  *
- * @param {Array<Object<string, string>>} hashes
+ * @param {Array<Object<string, string>>|string} args
  * @returns {Array<Object<string, *>>}
  */
-module.exports = function transform(hashes) {
-    return hashes.map(evaluateValues.bind(this));
+module.exports = function (args) {
+    if (Array.isArray(args))
+        return args.map(transformCollection.bind(this));
+    else
+        return transform.call(this, args);
 };
 
 /**
  *
- * @param {Object<string, string>} each
+ * @param {Object<string, string>} obj
  * @returns {Object<string, *>}
  */
-function evaluateValues(each) {
-    Object.keys(each).forEach(key => {
-        let value = each[key];
-        try {
-            value = executeJs(value);
-        } catch (e) {
-            if (value.includes('=')) {
-                const assignment = value.split('=').map(each => each.trim());
-                this[assignment[0]] = assignment[1];
-                value = assignment[1];
-            } else if (this[value]) {
-                value = this[value];
-            } else if (isNaN(value)) {
-                if (moment(value).isValid()) {
-                    value = moment.utc(value).toDate();
-                }
+function transformCollection(obj) {
+    Object.keys(obj).forEach(key => obj[key] = transform.call(this, obj[key]));
+    return obj;
+}
+
+/**
+ *
+ * @param {string} value
+ * @returns {*}
+ */
+function transform(value) {
+    try {
+        value = executeJs(value);
+    } catch (e) {
+        if (value.includes('=')) {
+            value = transformAssignment.call(this, value);
+        } else if (this[value]) {
+            value = this[value];
+        } else if (value.indexOf('$') === 0) {
+            value = transformAccess.call(this, value);
+        } else if (isNaN(value)) {
+            if (moment(value).isValid()) {
+                value = moment.utc(value).toDate();
             }
         }
-        each[key] = value;
-    });
-    return each;
+    }
+    return value;
 }
 
 /**
@@ -49,4 +58,25 @@ function evaluateValues(each) {
  */
 function executeJs(value) {
     return Function('"use strict";return (' + value + ')')();
+}
+
+/**
+ * @param {string} value
+ * @returns {*}
+ */
+function transformAssignment(value) {
+    const assignment = value.split('=').map(e => e.trim());
+    this[assignment[0]] = assignment[1];
+    return assignment[1];
+}
+
+/**
+ *
+ *
+ * @param {string} value
+ * @returns {*}
+ */
+function transformAccess(value) {
+    const index = value.match(/\d/g)[0];
+    return this.$[index][value.split('.').pop()];
 }

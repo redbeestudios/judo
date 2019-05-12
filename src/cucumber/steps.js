@@ -15,8 +15,11 @@ Given('{word} está vacia', truncateTableStep);
 
 
 const insertIntoTableStep = function (table, data) {
-    this.b = 'b';
-    return insert(table, transform.call(this, data.hashes()));
+    return insert(table, transform.call(this, data.hashes()))
+        .then(result => {
+            this.$ = result.recordset;
+            return Promise.resolve(result);
+        });
 };
 
 Given('a table {word}', insertIntoTableStep);
@@ -35,7 +38,7 @@ const exectueSpWithArgumentsStep = function (storedProcedure, args) {
             let line = cur.split(' ');
             acc[line[0]] = {
                 type: line[1],
-                value: line[2]
+                value: transform.call(this, line[2])
             };
             return acc;
         }, {});
@@ -76,12 +79,18 @@ Then('{word} debería estar vacia', tableIsEmptyStep);
 
 
 const variableIsEqualToStep = function (variable, value) {
-    expect(this[variable]).equal(value);
+    expect(this[variable]).equal(transform.call(this, value));
 };
 
-Then('variable {word} should equal {word}', variableIsEqualToStep);
-Then('la variable {word} debería ser igual a {word}', variableIsEqualToStep);
+Then(/^variable (.*) should equal (.*)$/, variableIsEqualToStep);
+Then(/^la variable (.*) debería ser igual a (.*)$/, variableIsEqualToStep);
 
+const defineVariableStep = function (value, key) {
+    this[key] = transform.call(this, value);
+};
+
+Then(/^I save (.*) as (.*)$/, defineVariableStep);
+Then(/^guardo (.*) como (.*)$/, defineVariableStep);
 
 const runLiquibaseStep = function (fileName) {
     return liquibase({
