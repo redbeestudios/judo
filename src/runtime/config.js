@@ -4,7 +4,7 @@ const config = {
         password: process.env.SQL_PASSWORD || 'Password01',
         server: process.env.SQL_HOST || 'localhost',
         port: Number(process.env.SQL_PORT) || 1433,
-        database: process.env.SQL_DATABASE || 'Configurations',
+        database: process.env.SQL_DATABASE || 'master',
         pool: {
             max: 1,
             min: 1,

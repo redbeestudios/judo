@@ -23,16 +23,43 @@ Feature: judo works
       | my_letter | my_number | my_boolean | my_date             |
       | A         | 42        | true       | 2019-03-01 00:00:00 |
 
-  Scenario: validate context variable
+  Scenario: store the output of the last insert in $
+
+    Given a table my_test_table
+      | my_letter |
+      | A         |
+    Then variable $[0].my_letter should equal A
+
+    Given a table my_test_table
+      | my_letter |
+      | B         |
+    Then variable $[0].my_letter should equal B
+
+  Scenario: store the output of insert in [table name]
+    Given a table my_test_table
+      | my_number |
+      | 123       |
+    Then variable my_test_table[0].my_number should equal 123
+
+  Scenario: store the output of insert in table alias
+    Given a table my_test_table t
+      | my_letter |
+      | A         |
+    Then variable t[0].my_letter should equal 'A'
+
+  Scenario: store a variable in context
+
+    Given I save world as hello
+
+    Then variable hello should equal world
+
+  Scenario: store a variable in context from a data table
 
     Given a table my_test_table
       | my_letter  |
       | letter = a |
 
-    Then variable letter should equal a
-
-  Scenario: i store a variable
-
-    Given I save world as hello
-
-    Then variable hello should equal world
+    Then my_test_table should have
+      | my_letter |
+      | a         |
+    And variable letter should equal a

@@ -18,12 +18,24 @@ const insertIntoTableStep = function (table, data) {
     return insert(table, transform.call(this, data.hashes()))
         .then(result => {
             this.$ = result.recordset;
+            this[table] = result.recordset;
             return Promise.resolve(result);
         });
 };
-
 Given('a table {word}', insertIntoTableStep);
 Given('la tabla {word}', insertIntoTableStep);
+
+
+const insertIntoTableWithAliasStep = function (table, alias, data) {
+    return insert(table, transform.call(this, data.hashes()))
+        .then(result => {
+            this.$ = result.recordset;
+            this[alias] = result.recordset;
+            return Promise.resolve(result);
+        });
+};
+Given('a table {word} {word}', insertIntoTableWithAliasStep);
+Given('la tabla {word} {word}', insertIntoTableWithAliasStep);
 
 const executeSpStep = function (storedProcedure) {
     return exec(storedProcedure);
@@ -79,7 +91,7 @@ Then('{word} debería estar vacia', tableIsEmptyStep);
 
 
 const variableIsEqualToStep = function (variable, value) {
-    expect(this[variable]).equal(transform.call(this, value));
+    expect(transform.call(this, value)).equal(transform.call(this, value));
 };
 
 Then(/^variable (.*) should equal (.*)$/, variableIsEqualToStep);
