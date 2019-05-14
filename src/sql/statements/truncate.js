@@ -1,5 +1,5 @@
 /**
- * Build a TRUNCATE statement
+ * Build a DELETE FROM statement
  *
  * @param {string} table - the table to truncate
  * @returns {string} - a SQL query

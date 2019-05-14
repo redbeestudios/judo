@@ -28,24 +28,18 @@ Feature: judo works
     Given a table my_test_table
       | my_letter |
       | A         |
-    Then variable $[0].my_letter should equal A
+    Then variable $>1>my_letter should equal A
 
     Given a table my_test_table
       | my_letter |
       | B         |
-    Then variable $[0].my_letter should equal B
-
-  Scenario: store the output of insert in [table name]
-    Given a table my_test_table
-      | my_number |
-      | 123       |
-    Then variable my_test_table[0].my_number should equal 123
+    Then variable $>1>my_letter should equal B
 
   Scenario: store the output of insert in table alias
-    Given a table my_test_table t
+    Given a table my_test_table $table
       | my_letter |
       | A         |
-    Then variable t[0].my_letter should equal 'A'
+    Then variable $table>1>my_letter should equal 'A'
 
   Scenario: store a variable in context
 

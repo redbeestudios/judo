@@ -77,6 +77,6 @@ function transformAssignment(value) {
  * @returns {*}
  */
 function transformAccess(value) {
-    const index = value.match(/\d/g)[0];
-    return this.$[index][value.split('.').pop()];
+    const access = value.split('>');
+    return this[access[0]][access[1] - 1][access[2]];
 }
