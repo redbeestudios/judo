@@ -32,12 +32,14 @@ function transform(value) {
     try {
         value = executeJs(value);
     } catch (e) {
-        if (value.includes('=')) {
+        if (value === 'NULL') {
+            value = null;
+        } else if (value.includes('=')) {
             value = transformAssignment.call(this, value);
         } else if (this[value]) {
             value = this[value];
         } else if (value.indexOf('$') === 0) {
-            value = transformAccess.call(this, value);
+            value = transformTableAccess.call(this, value);
         } else if (isNaN(value)) {
             if (moment(value).isValid()) {
                 value = moment.utc(value).toDate();
@@ -76,7 +78,7 @@ function transformAssignment(value) {
  * @param {string} value
  * @returns {*}
  */
-function transformAccess(value) {
+function transformTableAccess(value) {
     const access = value.split('>');
     return this[access[0]][access[1] - 1][access[2]];
 }

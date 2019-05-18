@@ -17,6 +17,12 @@ describe('transform data from cucumber data tables', function () {
         ]);
     });
 
+    it('should transform a null or undefined correctly', function () {
+        expect(transform('null')).toEqual(null);
+        expect(transform('undefined')).toEqual(undefined);
+        expect(transform('NULL')).toEqual(null);
+    });
+
     it('should transform a number value correctly', function () {
         expect(transform('1')).toEqual(1);
     });
@@ -24,7 +30,7 @@ describe('transform data from cucumber data tables', function () {
     it('should transform a string value correctly', function () {
         expect(transform('abc')).toEqual('abc');
         expect(transform('\'abc\'')).toEqual('abc');
-
+        expect(transform('\'\'')).toEqual('');
     });
 
     it('should transform a date value correctly', function () {
@@ -47,15 +53,15 @@ describe('transform data from cucumber data tables', function () {
         expect(this.hi).toEqual('world');
     });
 
-    it('should transform an access to the last select with $', function () {
+    it('should transform an access to the last insert with $', function () {
         this.$ = [
             {
                 id: 1,
                 letter: 'a'
             }
         ];
-        expect(transform.call(this, '$[0].id')).toEqual(1);
-        expect(transform.call(this, '$[0].letter')).toEqual('a');
+        expect(transform.call(this, '$>1>id')).toEqual(1);
+        expect(transform.call(this, '$>1>letter')).toEqual('a');
     });
 
     it('should transform several values correctly', function () {

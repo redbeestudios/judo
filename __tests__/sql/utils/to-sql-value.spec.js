@@ -33,5 +33,5 @@ describe('Convert js values to sql', function () {
     it('should convert Date to SQL datetime accepted format', function () {
         let d = new Date('2019-05-01 00:00:00');
         expect(toSQLValue(d)).toEqual('\'2019-05-01 03:00:00\'');
-    })
+    });
 });
