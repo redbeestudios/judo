@@ -1,17 +1,28 @@
-const {Given, When, Then} = require('cucumber');
+const {Given, When, Then, defineParameterType} = require('cucumber');
 const {expect} = require('chai');
 const transform = require('./transform-data');
-
 const {insert, exec, select, truncate, query} = require('../sql/operations');
 const whereEachRow = require('../sql/statements/helpers/where-each-row');
 const liquibase = require('../liquibase');
+
+
+defineParameterType({
+    regexp: /\w+\S*/,
+    name: 'tableName'
+});
+
+defineParameterType({
+    regexp: /\$\w+\S*/,
+    name: 'tableAlias'
+});
+
 
 const truncateTableStep = function (table) {
     return truncate(table);
 };
 
-Given('{word} is empty', truncateTableStep);
-Given('{word} está vacia', truncateTableStep);
+Given('{tableName} is empty', truncateTableStep);
+Given('{tableName} está vacia', truncateTableStep);
 
 
 const insertIntoTableStep = function (table, data) {
@@ -21,8 +32,8 @@ const insertIntoTableStep = function (table, data) {
             return Promise.resolve(result);
         });
 };
-Given('a table {word}', insertIntoTableStep);
-Given('la tabla {word}', insertIntoTableStep);
+Given('a table {tableName}', insertIntoTableStep);
+Given('la tabla {tableName}', insertIntoTableStep);
 
 
 const insertIntoTableWithAliasStep = function (table, alias, data) {
@@ -33,15 +44,15 @@ const insertIntoTableWithAliasStep = function (table, alias, data) {
             return Promise.resolve(result);
         });
 };
-Given(/^a table (.*) (.*)$/, insertIntoTableWithAliasStep);
-Given(/^la tabla (.*) (.*)$/, insertIntoTableWithAliasStep);
+Given('a table {tableName} {tableAlias}', insertIntoTableWithAliasStep);
+Given('la tabla {tableName} {tableAlias}', insertIntoTableWithAliasStep);
 
 const executeSpStep = function (storedProcedure) {
     return exec(storedProcedure);
 };
 
-When('I execute {word}', executeSpStep);
-When('ejecuto el sp {word}', executeSpStep);
+When('I execute {tableName}', executeSpStep);
+When('ejecuto el sp {tableName}', executeSpStep);
 
 const exectueSpWithArgumentsStep = function (storedProcedure, args) {
     const inputList = args.split('\n')
@@ -56,8 +67,8 @@ const exectueSpWithArgumentsStep = function (storedProcedure, args) {
     return exec(storedProcedure, inputList);
 };
 
-When('I execute {word} with args:', exectueSpWithArgumentsStep);
-When('ejecuto el sp {word} con los argumentos:', exectueSpWithArgumentsStep);
+When('I execute {tableName} with args:', exectueSpWithArgumentsStep);
+When('ejecuto el sp {tableName} con los argumentos:', exectueSpWithArgumentsStep);
 
 const validateTableExactlyStep = function (table, data) {
     let fields = data.hashes().length && Object.keys(data.hashes()[0]);
@@ -67,8 +78,8 @@ const validateTableExactlyStep = function (table, data) {
         .then(result => expect(result.recordset).deep.equal(realData));
 };
 
-Then('{word} should have', validateTableExactlyStep);
-Then('{word} debería tener exactamente', validateTableExactlyStep);
+Then('{tableName} should have', validateTableExactlyStep);
+Then('{tableName} debería tener exactamente', validateTableExactlyStep);
 
 const validateTableContentStep = function (table, data) {
     const fields = data.hashes().length && Object.keys(data.hashes()[0]);
@@ -77,16 +88,16 @@ const validateTableContentStep = function (table, data) {
         .then(result => expect(result.recordset).deep.equal(realData));
 };
 
-Then('{word} should contain', validateTableContentStep);
-Then('{word} debería contener', validateTableContentStep);
+Then('{tableName} should contain', validateTableContentStep);
+Then('{tableName} debería contener', validateTableContentStep);
 
 const tableIsEmptyStep = function (table) {
     return select(table)
         .then(result => expect(result.recordset).deep.equal([]));
 };
 
-Then('{word} should be empty', tableIsEmptyStep);
-Then('{word} debería estar vacia', tableIsEmptyStep);
+Then('{tableName} should be empty', tableIsEmptyStep);
+Then('{tableName} debería estar vacia', tableIsEmptyStep);
 
 
 const variableIsEqualToStep = function (key, value) {
