@@ -1,10 +1,30 @@
 const {Given, When, Then, defineParameterType} = require('cucumber');
-const {expect} = require('chai');
-const transform = require('./transform-data');
-const {insert, exec, select, truncate, query} = require('../sql/operations');
-const whereEachRow = require('../sql/statements/helpers/where-each-row');
+const {use, expect} = require('chai');
+
 const liquibase = require('../liquibase');
 
+const comparator = require('../runtime/loose-comparator');
+const transform = require('../runtime/transform-data');
+
+const {insert, exec, select, truncate, query} = require('../sql/operations');
+const whereEachRow = require('../sql/statements/helpers/where-each-row');
+
+// Configure chai
+use(function (chai, utils) {
+    chai.Assertion.overwriteMethod('eql', function () {
+        return function (obj, msg) {
+            if (msg) utils.flag(this, 'message', msg);
+            this.assert(
+                utils.eql(obj, utils.flag(this, 'object'), {comparator})
+                , 'expected #{this} to deeply equal #{exp}'
+                , 'expected #{this} to not deeply equal #{exp}'
+                , obj
+                , this._obj
+                , true
+            );
+        };
+    });
+});
 
 defineParameterType({
     regexp: /\w+\S*/,
@@ -85,7 +105,7 @@ const validateTableContentStep = function (table, data) {
     const fields = data.hashes().length && Object.keys(data.hashes()[0]);
     const realData = transform.call(this, data.hashes());
     return query(`SELECT ${fields.join(',')} FROM ${table} WHERE ${whereEachRow(realData)}`)
-        .then(result => expect(result.recordset).deep.equal(realData));
+        .then(result => expect(result.recordset).to.eql(realData));
 };
 
 Then('{tableName} should contain', validateTableContentStep);
@@ -93,7 +113,7 @@ Then('{tableName} debería contener', validateTableContentStep);
 
 const tableIsEmptyStep = function (table) {
     return select(table)
-        .then(result => expect(result.recordset).deep.equal([]));
+        .then(result => expect(result.recordset).to.eql([]));
 };
 
 Then('{tableName} should be empty', tableIsEmptyStep);

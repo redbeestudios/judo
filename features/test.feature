@@ -17,11 +17,47 @@ Feature: judo works
 
     Given a table my_test_table
       | my_letter | my_number | my_boolean | my_date             |
-      | A         | 42        | true       | 2019-03-01 00:00:00 |
+      | A         | 42        | true       | 2019-03-01 00:00:01 |
 
     Then my_test_table should have
       | my_letter | my_number | my_boolean | my_date             |
-      | A         | 42        | true       | 2019-03-01 00:00:00 |
+      | A         | 42        | true       | 2019-03-01 00:01:00 |
+
+  Scenario: add a row with a single value to a table
+
+    Given a table my_test_table
+      | my_letter |
+      | A         |
+
+    Then my_test_table should have
+      | my_letter |
+      | A         |
+
+  Scenario: non added fields stay null and i can use NULL or null for validation
+
+    Given a table my_test_table
+      | my_letter |
+      | A         |
+
+    Then my_test_table should have
+      | my_letter | my_number | my_boolean | my_date |
+      | A         | NULL      | null       | null    |
+
+  Scenario: i can insert/validate BIT fields with 0/1 or false/true
+
+    Given a table my_test_table
+      | my_boolean |
+      | true       |
+      | 1          |
+      | false      |
+      | 0          |
+
+    Then my_test_table should have
+      | my_boolean |
+      | 1          |
+      | true       |
+      | 0          |
+      | false      |
 
   Scenario: store the output of the last insert in $
 
