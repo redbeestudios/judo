@@ -40,10 +40,10 @@ function transform(value) {
             value = this[value];
         } else if (value.indexOf('$') === 0) {
             value = transformTableAccess.call(this, value);
-        } else if (isNaN(value)) {
-            if (moment(value).isValid()) {
-                value = moment.utc(value).toDate();
-            }
+        } else if (value.match(/\$\w+/)) {
+            value = transformVariablesInString.call(this, value);
+        } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
+            value = moment.utc(value).toDate();
         }
     }
     return value;
@@ -81,4 +81,21 @@ function transformAssignment(value) {
 function transformTableAccess(value) {
     const access = value.split('>');
     return this[access[0]][access[1] - 1][access[2]];
+}
+
+/**
+ *
+ * @param {*} value
+ * @returns {string}
+ */
+function transformVariablesInString(value) {
+    const variables = value.match(/(\$\w+)|(\\\$\w+)/g);
+    variables.forEach(key => {
+        if (key.indexOf('\\') === 0)
+            value = value.replace(key, key.slice(1));
+        else if (this[key]) {
+            value = value.replace(key, this[key]);
+        }
+    });
+    return value;
 }

@@ -106,4 +106,15 @@ describe('transform data from cucumber data tables', function () {
         ]);
     });
 
+    it('should transform a string with variables correctly', function () {
+        this.$my_var = 5;
+        this.$my_letter = 'A';
+        expect(transform.call(this, 'my var $my_var')).toEqual('my var 5');
+        expect(transform.call(this, 'my letter $my_letter')).toEqual('my letter A');
+        expect(transform.call(this, 'my variables $my_letter and $my_var')).toEqual('my variables A and 5');
+        expect(transform.call(this, 'my lettervar $my_letter$my_var')).toEqual('my lettervar A5');
+        expect(transform.call(this, 'my value \\$my_number')).toEqual('my value $my_number');
+        expect(transform.call(this, 'my value $my_number')).toEqual('my value $my_number');
+    });
+
 });

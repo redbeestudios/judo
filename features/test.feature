@@ -4,6 +4,7 @@ Feature: judo works
 
   CREATE TABLE my_test_table (
     my_letter VARCHAR,
+    my_string VARCHAR(500),
     my_number INT,
     my_boolean BIT,
     my_date DATETIME
@@ -72,6 +73,7 @@ Feature: judo works
     Then variable $>1>my_letter should equal B
 
   Scenario: store the output of insert in table alias
+
     Given a table my_test_table $table
       | my_letter |
       | A         |
@@ -93,3 +95,16 @@ Feature: judo works
       | my_letter |
       | a         |
     And variable letter should equal a
+
+  Scenario: variables inside string should be parsed
+
+    Given I save 5 as $number
+    And a table my_test_table
+      | my_string            |
+      | my number is $number |
+    Then my_test_table should have
+      | my_string            |
+      | my number is $number |
+    And my_test_table should have
+      | my_string      |
+      | my number is 5 |
