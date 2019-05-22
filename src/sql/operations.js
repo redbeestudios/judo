@@ -1,7 +1,7 @@
 const {sql, request} = require('./pool');
 const insertInto = require('./statements/insert-output');
 const selectFrom = require('./statements/select');
-const truncateTable = require('./statements/truncate');
+const truncateTable = require('./statements/delete');
 
 /**
  * @typedef {Object} SqlInput

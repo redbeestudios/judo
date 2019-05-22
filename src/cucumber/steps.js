@@ -8,6 +8,7 @@ const transform = require('../runtime/transform-data');
 
 const {insert, exec, select, truncate, query} = require('../sql/operations');
 const whereEachRow = require('../sql/statements/helpers/where-each-row');
+const selectValue = require('../sql/statements/select-value');
 
 // Configure chai
 use(function (chai, utils) {
@@ -36,6 +37,15 @@ defineParameterType({
     name: 'tableAlias'
 });
 
+defineParameterType({
+    regexp: /\w+\S*/,
+    name: 'tableField'
+});
+
+defineParameterType({
+    regexp: /(.*)/,
+    name: 'any'
+});
 
 const truncateTableStep = function (table) {
     return truncate(table);
@@ -124,15 +134,15 @@ const variableIsEqualToStep = function (key, value) {
     expect(transform.call(this, key)).equal(transform.call(this, value));
 };
 
-Then(/^variable (.*) should equal (.*)$/, variableIsEqualToStep);
-Then(/^la variable (.*) debería ser igual a (.*)$/, variableIsEqualToStep);
+Then('variable {any} should equal {any}', variableIsEqualToStep);
+Then('la variable {any} debería ser igual a {any}', variableIsEqualToStep);
 
 const defineVariableStep = function (value, key) {
     this[key] = transform.call(this, value);
 };
 
-Then(/^I save (.*) as (.*)$/, defineVariableStep);
-Then(/^guardo (.*) como (.*)$/, defineVariableStep);
+Then('I save {any} as {any}', defineVariableStep);
+Then('guardo {any} como {any}', defineVariableStep);
 
 const runLiquibaseStep = function (fileName) {
     return liquibase({
@@ -143,3 +153,17 @@ const runLiquibaseStep = function (fileName) {
 
 Given('the following liquibase are run:', runLiquibaseStep);
 Given('se corrieron los liquibase:', runLiquibaseStep);
+
+
+const findValueInTableStep = function (field, table, filterBy, value) {
+    return query(selectValue(field, table, filterBy, transform.call(this, value)))
+        .then(result => {
+            if (!result.recordset.length)
+                return Promise.reject(`No records found by ${filterBy} = ${value}`);
+            this['$' + field] = result.recordset[0][field];
+            return Promise.resolve(result);
+        });
+};
+
+Given('I read {tableField} from table {tableName} when {tableField} equals {any}', findValueInTableStep);
+Given('leo {tableField} de la tabla {tableName} cuando {tableField} es {any}', findValueInTableStep);

@@ -108,3 +108,14 @@ Feature: judo works
     And my_test_table should have
       | my_string      |
       | my number is 5 |
+
+
+  Scenario: i read one value from the a table
+
+    Given a table my_test_table
+      | my_letter | my_number |
+      | C         | 123       |
+
+    When I read my_number from table my_test_table when my_letter equals C
+
+    Then variable $my_number should equal 123
