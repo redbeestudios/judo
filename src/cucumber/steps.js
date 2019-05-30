@@ -78,7 +78,11 @@ Given('a table {tableName} {tableAlias}', insertIntoTableWithAliasStep);
 Given('la tabla {tableName} {tableAlias}', insertIntoTableWithAliasStep);
 
 const executeSpStep = function (storedProcedure) {
-    return exec(storedProcedure);
+    return exec(storedProcedure)
+        .then(result => {
+            this.$ = result;
+            return Promise.resolve(result);
+        });
 };
 
 When('I execute {tableName}', executeSpStep);
@@ -94,7 +98,11 @@ const exectueSpWithArgumentsStep = function (storedProcedure, args) {
             };
             return acc;
         }, {});
-    return exec(storedProcedure, inputList);
+    return exec(storedProcedure, inputList)
+        .then(result => {
+            this.$ = result;
+            return Promise.resolve(result);
+        });
 };
 
 When('I execute {tableName} with args:', exectueSpWithArgumentsStep);

@@ -9,6 +9,11 @@ Feature: judo works
     my_boolean BIT,
     my_date DATETIME
   );
+
+  CREATE PROCEDURE my_procedure
+  AS
+    RETURN 1;
+  GO
   """
 
   Background: setup context
@@ -119,3 +124,9 @@ Feature: judo works
     When I read my_number from table my_test_table when my_letter equals C
 
     Then variable $my_number should equal 123
+
+  Scenario: i execute a stored procedure and access it's result
+
+    When I execute my_procedure
+
+    Then variable $.returnValue should equal 1
