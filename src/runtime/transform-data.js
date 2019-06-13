@@ -42,7 +42,7 @@ function transform(value) {
             value = transformTableAccess.call(this, value);
         } else if (value.match(/\$\w+/)) {
             value = transformVariablesInString.call(this, value);
-        } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
+        } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss.SSS','YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
             value = moment.utc(value).toDate();
         }
     }
