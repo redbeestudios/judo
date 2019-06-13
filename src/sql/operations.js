@@ -42,10 +42,11 @@ const exec = async (sp, args) => {
  *
  * @param {string} table
  * @param {Array<string>} [fields]
+ * @param {Array<string>} [order]
  * @returns {Promise<void>}
  */
-const select = async (table, fields) => {
-    return query(selectFrom(table, fields));
+const select = async (table, fields, order) => {
+    return query(selectFrom(table, fields, order));
 };
 
 /**

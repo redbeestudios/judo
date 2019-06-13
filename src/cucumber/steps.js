@@ -5,6 +5,7 @@ const liquibase = require('../liquibase');
 
 const comparator = require('../runtime/loose-comparator');
 const transform = require('../runtime/transform-data');
+const JudoDataTable = require('../runtime/judo-data-table');
 
 const {insert, exec, select, truncate, query} = require('../sql/operations');
 const whereEachRow = require('../sql/statements/helpers/where-each-row');
@@ -101,10 +102,9 @@ When('I execute {tableName} with args:', exectueSpWithArgumentsStep);
 When('ejecuto el sp {tableName} con los argumentos:', exectueSpWithArgumentsStep);
 
 const validateTableExactlyStep = function (table, data) {
-    let fields = data.hashes().length && Object.keys(data.hashes()[0]);
-    let realData = transform.call(this, data.hashes());
-
-    return select(table, fields)
+    const judoDataTable = new JudoDataTable(data);
+    const realData = transform.call(this, judoDataTable.body());
+    return select(table, judoDataTable.fields(), judoDataTable.order())
         .then(result => expect(result.recordset).deep.equal(realData));
 };
 
@@ -112,9 +112,9 @@ Then('{tableName} should have', validateTableExactlyStep);
 Then('{tableName} debería tener exactamente', validateTableExactlyStep);
 
 const validateTableContentStep = function (table, data) {
-    const fields = data.hashes().length && Object.keys(data.hashes()[0]);
-    const realData = transform.call(this, data.hashes());
-    return query(`SELECT ${fields.join(',')} FROM ${table} WHERE ${whereEachRow(realData)}`)
+    const judoDataTable = new JudoDataTable(data);
+    const realData = transform.call(this, judoDataTable.body());
+    return query(`SELECT ${judoDataTable.fields().join(',')} FROM ${table} WHERE ${whereEachRow(realData)}`)
         .then(result => expect(result.recordset).to.eql(realData));
 };
 

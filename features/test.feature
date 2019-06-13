@@ -34,6 +34,23 @@ Feature: judo works
       | my_letter |
       | A         |
 
+  Scenario: read table ordered by columns
+
+    Given a table my_test_table
+      | my_letter | my_number |
+      | C         | 3         |
+      | B         | 2         |
+      | D         | 4         |
+      | A         | 1         |
+
+    Then my_test_table should have
+      | my_letter {asc} | my_number |
+      | A               | 1         |
+      | B               | 2         |
+      | C               | 3         |
+      | D               | 4         |
+
+
   Scenario: non added fields stay null and i can use NULL or null for validation
 
     Given a table my_test_table
