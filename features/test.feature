@@ -1,20 +1,27 @@
 Feature: judo works
-"""
-  This table should exist in the database
 
-  CREATE TABLE my_test_table (
-    my_letter VARCHAR,
-    my_string VARCHAR(500),
-    my_number INT,
-    my_boolean BIT,
-    my_date DATETIME
-  );
-
-  CREATE PROCEDURE my_procedure
-  AS
-    RETURN 1;
-  GO
-  """
+#  This table should exist in the database
+#
+#  CREATE TABLE my_test_table (
+#    my_letter VARCHAR,
+#    my_string VARCHAR(500),
+#    my_number INT,
+#    my_boolean BIT,
+#    my_date DATETIME
+#  );
+#
+#  CREATE PROCEDURE my_procedure
+#  AS
+#    RETURN 1;
+#  GO
+#
+#  CREATE OR ALTER PROCEDURE my_sp (
+#    @cant Int,
+#    @result Int OUTPUT)
+#  AS
+#  SET @result = @cant;
+#  RETURN @cant;
+#  GO
 
   Background: setup context
     Given my_test_table is empty
@@ -146,4 +153,15 @@ Feature: judo works
 
     When I execute my_procedure
 
-    Then variable $.returnValue should equal 1
+    Then variable $returned should equal 1
+
+
+  Scenario: i pass output values to sp
+
+    When I execute my_sp with args:
+    """
+    cant 1
+    result 2 OUTPUT
+    """
+
+    Then variable $result should equal 1

@@ -6,6 +6,7 @@ const liquibase = require('../liquibase');
 const comparator = require('../runtime/loose-comparator');
 const transform = require('../runtime/transform-data');
 const JudoDataTable = require('../runtime/judo-data-table');
+const argumentsParser = require('../runtime/arguments-parser');
 
 const {insert, exec, select, truncate, query} = require('../sql/operations');
 const whereEachRow = require('../sql/statements/helpers/where-each-row');
@@ -81,7 +82,7 @@ Given('la tabla {tableName} {tableAlias}', insertIntoTableWithAliasStep);
 const executeSpStep = function (storedProcedure) {
     return exec(storedProcedure)
         .then(result => {
-            this.$ = result;
+            this.$returned = result.returnValue;
             return Promise.resolve(result);
         });
 };
@@ -89,25 +90,21 @@ const executeSpStep = function (storedProcedure) {
 When('I execute {tableName}', executeSpStep);
 When('ejecuto el sp {tableName}', executeSpStep);
 
-const exectueSpWithArgumentsStep = function (storedProcedure, args) {
-    const inputList = args.split('\n')
-        .reduce((acc, cur) => {
-            let line = cur.split(' ');
-            acc[line[0]] = {
-                type: line[1],
-                value: transform.call(this, line[2])
-            };
-            return acc;
-        }, {});
+const executeSpWithArgumentsStep = function (storedProcedure, docString) {
+    const inputList = argumentsParser.call(this, docString);
     return exec(storedProcedure, inputList)
         .then(result => {
-            this.$ = result;
+            this.$returned = result.returnValue;
+            for (let key in result.output) {
+                if (result.output.hasOwnProperty(key))
+                    this['$' + key] = transform.call(this, result.output[key]);
+            }
             return Promise.resolve(result);
         });
 };
 
-When('I execute {tableName} with args:', exectueSpWithArgumentsStep);
-When('ejecuto el sp {tableName} con los argumentos:', exectueSpWithArgumentsStep);
+When('I execute {tableName} with args:', executeSpWithArgumentsStep);
+When('ejecuto el sp {tableName} con los argumentos:', executeSpWithArgumentsStep);
 
 const validateTableExactlyStep = function (table, data) {
     const judoDataTable = new JudoDataTable(data);

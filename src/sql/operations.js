@@ -24,16 +24,22 @@ const insert = async (table, data) => {
  * Execute a SQL Stored Procedure
  *
  * @param {string} sp a valid stored procedure
- * @param {Object<string, SqlInput>} [args]
+ * @param {Array<ProcedureArgument>} [args]
  * @returns {Promise<void>}
  */
 const exec = async (sp, args) => {
     const req = request();
     if (args) {
-        for (let arg in args) {
-            if (args.hasOwnProperty(arg))
-                req.input(arg, sql[args[arg].type], args[arg].value);
-        }
+        args.forEach(arg => {
+            if (arg.type)
+                req[arg.output ? 'output' : 'input'](arg.name, sql[arg.type], arg.value);
+            else {
+                if (arg.output)
+                    req.output(arg.name, null, arg.value);
+                else
+                    req.input(arg.name, arg.value);
+            }
+        });
     }
     return req.execute(sp);
 };
