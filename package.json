@@ -1,10 +1,12 @@
 {
   "name": "judo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "SQL Stored Procedures Testing Made SIMPLE",
   "scripts": {
-    "start": "./bin/judo features/",
-    "test": "jasmine --config=jasmine.json"
+    "start": "./bin/judo",
+    "test": "npm run unit && npm run integration",
+    "unit": "jasmine --config=jasmine.json",
+    "integration": "./bin/judo __tests__/"
   },
   "bin": {
     "judo": "./bin/judo"
