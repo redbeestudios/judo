@@ -1,7 +1,7 @@
 const {sql, request} = require('./pool');
-const insertInto = require('./statements/insert-output');
-const selectFrom = require('./statements/select');
-const truncateTable = require('./statements/delete');
+const insertStatement = require('./statements/insert-output');
+const selectStatement = require('./statements/select');
+const deleteStatement = require('./statements/delete');
 
 /**
  * @typedef {Object} SqlInput
@@ -16,8 +16,8 @@ const truncateTable = require('./statements/delete');
  * @param {Array<Object<string, *>>} data
  * @returns {Promise<void>}
  */
-const insert = async (table, data) => {
-    return query(insertInto(table, data));
+const insertInto = async (table, data) => {
+    return query(insertStatement(table, data));
 };
 
 /**
@@ -51,8 +51,8 @@ const exec = async (sp, args) => {
  * @param {Array<string>} [order]
  * @returns {Promise<void>}
  */
-const select = async (table, fields, order) => {
-    return query(selectFrom(table, fields, order));
+const selectFrom = async (table, fields, order) => {
+    return query(selectStatement(table, fields, order));
 };
 
 /**
@@ -61,8 +61,8 @@ const select = async (table, fields, order) => {
  * @param {string} table
  * @returns {Promise<Request|Promise>}
  */
-const truncate = async (table) => {
-    return query(truncateTable(table));
+const deleteFrom = async (table) => {
+    return query(deleteStatement(table));
 };
 
 /**
@@ -76,9 +76,9 @@ const query = async (query) => {
 };
 
 module.exports = {
-    insert,
+    insertInto,
     exec,
-    select,
-    truncate,
+    selectFrom,
+    deleteFrom,
     query
 };
