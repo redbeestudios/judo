@@ -1,8 +1,6 @@
 const {Given, When, Then, defineParameterType} = require('cucumber');
 const {use, expect} = require('chai');
 
-const liquibase = require('../liquibase');
-
 const comparator = require('../runtime/loose-comparator');
 const transform = require('../runtime/transform-data');
 const JudoDataTable = require('../runtime/judo-data-table');
@@ -148,17 +146,6 @@ const defineVariableStep = function (value, key) {
 
 Then('I save {any} as {any}', defineVariableStep);
 Then('guardo {any} como {any}', defineVariableStep);
-
-const runLiquibaseStep = function (fileName) {
-    return liquibase({
-        defaultsFile: '/home/joaco/.liquibase/local.configurations.properties',
-        changeLogFile: fileName
-    }).run();
-};
-
-Given('the following liquibase are run:', runLiquibaseStep);
-Given('se corrieron los liquibase:', runLiquibaseStep);
-
 
 const findValueInTableStep = function (field, table, filterBy, value) {
     return query(selectValue(field, table, filterBy, transform.call(this, value)))
