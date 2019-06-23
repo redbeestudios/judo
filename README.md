@@ -27,10 +27,11 @@ Scenario: calculate monthly summary for one user with several expenses
 | MSSQL | MySQL | Oracle | PostgreSQL |
 |------ |------ |------- |----------- |
 |  YES  |   NO  |   NO   |     NO     |
+
 Currently Judo can only be used with MSSQL, it's in my intentions to add support for other SQL engines.
 
 ## Usage
-Judo is based on Cucumber's runtime but all the steps necessary are already implemented. The only thing you need to do is define your [Gherkin Features]((https://cucumber.io/docs/gherkin/reference/)) (.feature files) using our available steps and execute Judo.
+Judo is based on Cucumber's runtime but all the steps necessary are already implemented. The only thing you need to do is define your [Gherkin Features](https://cucumber.io/docs/gherkin/reference/) (.feature files) using our available steps and execute Judo.
 
 By default Judo runs against a SQL Server's `master` database running on `localhost:1433`
 
