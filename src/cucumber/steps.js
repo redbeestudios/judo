@@ -15,6 +15,7 @@ const emptyTableStep = function (table) {
 
 Given('{tableName} is empty', emptyTableStep);
 Given('{tableName} está vacia', emptyTableStep);
+Given('{tableName} está vacía', emptyTableStep);
 
 
 const insertIntoTableStep = function (table, data) {
@@ -121,3 +122,16 @@ const findValueInTableStep = function (field, table, filterBy, value) {
 
 Given('I read {tableField} from table {tableName} when {tableField} equals {any}', findValueInTableStep);
 Given('leo {tableField} de la tabla {tableName} cuando {tableField} es {any}', findValueInTableStep);
+
+
+const callFunctionStep = function (func, key) {
+    return query(`SELECT ${func} as r;`).then(
+        value => {
+            this[key] = value.recordset[0].r;
+            return Promise.resolve(result);
+        }
+    )
+};
+
+Given('I call {any} as {any}', callFunctionStep);
+Given('llamo a la funcion {any} como {any}', callFunctionStep);

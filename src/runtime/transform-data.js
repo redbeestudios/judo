@@ -36,7 +36,7 @@ function transform(value) {
             value = null;
         } else if (value.includes('=')) {
             value = transformAssignment.call(this, value);
-        } else if (this[value]) {
+        } else if (this[value] !== undefined) {
             value = this[value];
         } else if (value.indexOf('$') === 0) {
             value = transformTableAccess.call(this, value);

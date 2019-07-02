@@ -62,7 +62,6 @@ Feature: judo works
       | C               | 3         |
       | D               | 4         |
 
-
   Scenario: non added fields stay null and i can use NULL or null for validation
 
     Given a table my_test_table
@@ -138,7 +137,6 @@ Feature: judo works
       | my_string      |
       | my number is 5 |
 
-
   Scenario: i read one value from the a table
 
     Given a table my_test_table
@@ -165,3 +163,15 @@ Feature: judo works
     """
 
     Then variable $result should equal 1
+
+  Scenario: i test a sql function
+
+    When I call UPPER('sql') as uppercase
+
+    Then variable uppercase should equal SQL
+
+  Scenario: i test a function
+
+    When I call IIF(1 = 1, 0, 1) as res
+
+    Then variable res should equal 0
