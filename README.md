@@ -41,7 +41,7 @@ By default Judo runs against a SQL Server's `master` database running on `localh
     $ ./bin/judo [features_dir]
     ```
 
-### Configuración
+### Configuration
 #### SQL Connection
 There are several ways to override the config properties: using ENV_VARS, CLI args, or a CommonJS config file.
 
