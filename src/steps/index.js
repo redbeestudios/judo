@@ -11,5 +11,6 @@ module.exports = {
     insertIntoTableStep: require('./given/insert-into-table-step').insertIntoTableStep,
     insertIntoTableWithAliasStep: require('./given/insert-into-table-step').insertIntoTableWithAliasStep,
 
-    selectValueStep: require('./given/select-value-step')
+    selectValueStep: require('./given/select-value-step'),
+    tableIsEmptyStep: require('./then/table-is-empty-step')
 };
