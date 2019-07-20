@@ -2,6 +2,7 @@ const {sql, request} = require('./pool');
 const insertStatement = require('./statements/insert-output');
 const selectStatement = require('./statements/select');
 const deleteStatement = require('./statements/delete');
+const selectValueStatement = require('./statements/select-value');
 
 /**
  * Run a INSERT INTO to table
@@ -62,13 +63,31 @@ const deleteFrom = async (table) => {
 /**
  * Call a custom or native SQL function
  *
- * @param func
- * @returns {Promise<*>}
+ * @param {string} func
+ * @returns {Promise<*|*>}
  */
 const callFunction = async (func) => {
     return query(`SELECT ${func} as r;`)
         .then(result => {
             return Promise.resolve(result.recordset[0].r);
+        });
+};
+
+/**
+ * Select a single value from a table based on a single equals condition
+ *
+ * @param {string} field
+ * @param {string} table
+ * @param {string} filterBy
+ * @param {string} value
+ * @returns {Promise<* | *>}
+ */
+const selectValue = async (field, table, filterBy, value) => {
+    return query(selectValueStatement(field, table, filterBy, value))
+        .then(result => {
+            if (!result.recordset.length)
+                return Promise.reject(`No records found by ${filterBy} = ${value}`);
+            return Promise.resolve(result.recordset[0][field]);
         });
 };
 
@@ -88,5 +107,6 @@ module.exports = {
     selectFrom,
     deleteFrom,
     callFunction,
-    query,
+    selectValue,
+    query
 };

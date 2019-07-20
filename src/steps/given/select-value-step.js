@@ -1,13 +1,10 @@
-const {query} = require('../../engine/operations');
-const selectValue = require('../../engine/statements/select-value');
+const {selectValue} = require('../../engine/operations');
 const transform = require('../../runtime/transform-data');
 
 module.exports = function (field, table, filterBy, value) {
-    return query(selectValue(field, table, filterBy, transform.call(this, value)))
-        .then(result => {
-            if (!result.recordset.length)
-                return Promise.reject(`No records found by ${filterBy} = ${value}`);
-            this['$' + field] = result.recordset[0][field];
-            return Promise.resolve(result);
+    return selectValue(field, table, filterBy, transform.call(this, value))
+        .then(value => {
+            this['$' + field] = value;
+            return Promise.resolve(value);
         });
 };
