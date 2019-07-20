@@ -1,10 +1,10 @@
-const {query} = require('../../engine/operations');
+const {callFunction} = require('../../engine/operations');
 
 module.exports = function (func, key) {
-    return query(`SELECT ${func} as r;`).then(
+    return callFunction(func).then(
         value => {
-            this[key] = value.recordset[0].r;
-            return Promise.resolve(result);
+            this[key] = value;
+            return Promise.resolve(value);
         }
     );
 };

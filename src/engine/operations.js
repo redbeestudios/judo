@@ -50,13 +50,26 @@ const selectFrom = async (table, fields, order) => {
 };
 
 /**
- * Truncate a table
+ * Delete all data from a table
  *
  * @param {string} table
  * @returns {Promise<Request|Promise>}
  */
 const deleteFrom = async (table) => {
     return query(deleteStatement(table));
+};
+
+/**
+ * Call a custom or native SQL function
+ *
+ * @param func
+ * @returns {Promise<*>}
+ */
+const callFunction = async (func) => {
+    return query(`SELECT ${func} as r;`)
+        .then(result => {
+            return Promise.resolve(result.recordset[0].r);
+        });
 };
 
 /**
@@ -74,5 +87,6 @@ module.exports = {
     exec,
     selectFrom,
     deleteFrom,
-    query
+    callFunction,
+    query,
 };
