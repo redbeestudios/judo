@@ -1,9 +1,5 @@
 const {Given} = require('cucumber');
-const {deleteFrom} = require('../../sql/operations');
-
-const emptyTableStep = function (table) {
-    return deleteFrom(table);
-};
+const {emptyTableStep} = require('../../steps');
 
 Given('{tableName} is empty', emptyTableStep);
 Given('{tableName} está vacia', emptyTableStep);

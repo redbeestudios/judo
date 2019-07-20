@@ -166,6 +166,7 @@ Feature: judo works
     """
 
     Then variable $result should equal 1
+    And variable $returned should equal 1
 
   Scenario: i test a sql function
 
