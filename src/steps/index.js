@@ -9,5 +9,7 @@ module.exports = {
     executeRoutineWithArgsStep: require('./when/execute-routine-step').executeRoutineWithArgsStep,
 
     insertIntoTableStep: require('./given/insert-into-table-step').insertIntoTableStep,
-    insertIntoTableWithAliasStep: require('./given/insert-into-table-step').insertIntoTableWithAliasStep
+    insertIntoTableWithAliasStep: require('./given/insert-into-table-step').insertIntoTableWithAliasStep,
+
+    selectValueStep: require('./given/select-value-step')
 };
