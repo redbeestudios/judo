@@ -4,12 +4,6 @@ const selectStatement = require('./statements/select');
 const deleteStatement = require('./statements/delete');
 
 /**
- * @typedef {Object} SqlInput
- * @property {string} type
- * @property {string} value
- */
-
-/**
  * Run a INSERT INTO to table
  *
  * @param {string} table

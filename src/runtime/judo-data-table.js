@@ -1,5 +1,9 @@
 const headerParser = require('../runtime/header-parser');
 
+/**
+ *
+ * @type {module.JudoDataTable}
+ */
 module.exports = class JudoDataTable {
 
     constructor(dataTable) {

@@ -26,6 +26,9 @@ Feature: judo works
   Background: setup context
     Given my_test_table is empty
 
+  Scenario: table is empty
+    Then my_test_table should be empty
+
   Scenario: add a row to a table
 
     Given a table my_test_table
