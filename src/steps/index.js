@@ -10,5 +10,6 @@ module.exports = {
 
     defineVariableStep: require('./then/define-variable-step'),
     tableIsEmptyStep: require('./then/table-is-empty-step'),
-    validateTableExactlyStep: require('./then/validate-table-exactly-step')
+    validateTableExactlyStep: require('./then/validate-table-exactly-step'),
+    variableEqualsStep: require('./then/variable-equals-step')
 };
