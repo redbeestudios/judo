@@ -1,4 +1,4 @@
-const {selectFrom} = require('../../sql/operations');
+const {selectFrom} = require('../../engine/operations');
 const {expect} = require('chai');
 
 module.exports = function (table) {

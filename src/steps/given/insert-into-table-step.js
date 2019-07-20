@@ -1,5 +1,5 @@
 const transform = require('../../runtime/transform-data');
-const {insertInto} = require('../../sql/operations');
+const {insertInto} = require('../../engine/operations');
 
 const insertIntoTable = function (table, alias, data) {
     return insertInto(table, transform.call(this, data.hashes()))

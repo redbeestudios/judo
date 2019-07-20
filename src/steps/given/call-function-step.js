@@ -1,4 +1,4 @@
-const {query} = require('../../sql/operations');
+const {query} = require('../../engine/operations');
 
 module.exports = function (func, key) {
     return query(`SELECT ${func} as r;`).then(

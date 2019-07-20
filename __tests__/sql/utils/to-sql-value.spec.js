@@ -1,4 +1,4 @@
-const toSQLValue = require('../../../src/sql/utils/to-sql-value');
+const toSQLValue = require('../../../src/engine/utils/to-sql-value');
 
 describe('Convert js values to sql', function () {
 

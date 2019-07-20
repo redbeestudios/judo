@@ -1,4 +1,4 @@
-const selectValue = require('../../../src/sql/statements/select-value');
+const selectValue = require('../../../src/engine/statements/select-value');
 
 describe('Create a sql select statement from a table name and an array of fields', function () {
 

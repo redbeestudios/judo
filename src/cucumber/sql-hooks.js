@@ -1,5 +1,5 @@
 const {After, AfterAll, Before, BeforeAll} = require('cucumber');
-const {connect, close, newTransaction, transaction} = require('../sql/pool');
+const {connect, close, newTransaction, transaction} = require('../engine/pool');
 const config = require('../runtime/config')();
 
 BeforeAll(function () {

@@ -1,5 +1,5 @@
-const {query} = require('../../sql/operations');
-const selectValue = require('../../sql/statements/select-value');
+const {query} = require('../../engine/operations');
+const selectValue = require('../../engine/statements/select-value');
 const transform = require('../../runtime/transform-data');
 
 module.exports = function (field, table, filterBy, value) {

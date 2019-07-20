@@ -1,5 +1,5 @@
 const transform = require('../../runtime/transform-data');
-const {exec} = require('../../sql/operations');
+const {exec} = require('../../engine/operations');
 const argumentsParser = require('../../runtime/arguments-parser');
 
 const executeRoutine = function (storedProcedure, args) {

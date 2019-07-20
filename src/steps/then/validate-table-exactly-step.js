@@ -1,6 +1,6 @@
 const transform = require('../../runtime/transform-data');
 const JudoDataTable = require('../../runtime/judo-data-table');
-const {selectFrom} = require('../../sql/operations');
+const {selectFrom} = require('../../engine/operations');
 const {expect} = require('chai');
 
 module.exports = function (table, data) {

@@ -1,4 +1,4 @@
-const inserts = require('../../../src/sql/statements/insert-output');
+const inserts = require('../../../src/engine/statements/insert-output');
 
 describe('Create sql inserts that output the result from a collection of objects', function () {
 

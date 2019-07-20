@@ -1,5 +1,5 @@
 const moment = require('moment');
-const whereEachRow = require('../../../../src/sql/statements/helpers/where-each-row');
+const whereEachRow = require('../../../../src/engine/statements/helpers/where-each-row');
 
 describe('Create a concatenation of ORs for each row in data', function () {
 
