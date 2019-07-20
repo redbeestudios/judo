@@ -3,7 +3,7 @@ const {exec} = require('../../engine/operations');
 const argumentsParser = require('../../runtime/arguments-parser');
 
 const executeRoutine = function (storedProcedure, args) {
-    const inputList = typeof args === 'string' ? argumentsParser.call(this, args) : null;
+    const inputList = args && argumentsParser.call(this, args);
     return exec(storedProcedure, inputList)
         .then(result => {
             this.$returned = result.returnValue;
@@ -16,7 +16,7 @@ const executeRoutine = function (storedProcedure, args) {
 };
 
 module.exports.executeRoutineStep = function (routine) {
-    return executeRoutine.call(this, routine);
+    return executeRoutine.call(this, routine, null);
 };
 
 module.exports.executeRoutineWithArgsStep = function (routine, args) {
