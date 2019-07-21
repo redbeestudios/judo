@@ -30,7 +30,6 @@ const request = () => {
 };
 
 module.exports = {
-    sql,
     request,
     transaction,
     newTransaction,

@@ -3,11 +3,11 @@ const {insertInto} = require('../../engine/operations');
 
 const insertIntoTable = function (table, alias, data) {
     return insertInto(table, transform.call(this, data.hashes()))
-        .then(result => {
-            this.$ = result.recordset;
+        .then(data => {
+            this.$ = data;
             if (alias)
-                this[alias] = result.recordset;
-            return Promise.resolve(result);
+                this[alias] = data;
+            return Promise.resolve(data);
         });
 };
 

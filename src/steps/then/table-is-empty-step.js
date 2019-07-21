@@ -3,5 +3,5 @@ const {expect} = require('chai');
 
 module.exports = function (table) {
     return selectFrom(table)
-        .then(result => expect(result.recordset).to.eql([]));
+        .then(result => expect(result).to.eql([]));
 };

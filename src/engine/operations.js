@@ -1,4 +1,5 @@
-const {sql, request} = require('./pool');
+const sql = require('mssql');
+const {request} = require('./pool');
 const insertStatement = require('./statements/insert-output');
 const selectStatement = require('./statements/select');
 const deleteStatement = require('./statements/delete');
@@ -12,7 +13,8 @@ const selectValueStatement = require('./statements/select-value');
  * @returns {Promise<void>}
  */
 const insertInto = async (table, data) => {
-    return query(insertStatement(table, data));
+    return query(insertStatement(table, data))
+        .then(result => Promise.resolve(result.recordset));
 };
 
 /**
@@ -36,7 +38,12 @@ const exec = async (sp, args) => {
             }
         });
     }
-    return req.execute(sp);
+    return req.execute(sp).then(result => {
+        return {
+            returnValue: result.returnValue,
+            output: result.output
+        };
+    });
 };
 /**
  * Run a SELECT against a table
@@ -47,7 +54,8 @@ const exec = async (sp, args) => {
  * @returns {Promise<void>}
  */
 const selectFrom = async (table, fields, order) => {
-    return query(selectStatement(table, fields, order));
+    return query(selectStatement(table, fields, order))
+        .then(result => result.recordset);
 };
 
 /**
@@ -102,11 +110,10 @@ const query = async (query) => {
 };
 
 module.exports = {
-    insertInto,
     exec,
+    insertInto,
     selectFrom,
     deleteFrom,
     callFunction,
-    selectValue,
-    query
+    selectValue
 };
