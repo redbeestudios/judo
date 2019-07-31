@@ -117,4 +117,12 @@ describe('transform data from cucumber data tables', function () {
         expect(transform.call(this, 'my value $my_number')).toEqual('my value $my_number');
     });
 
+    it('should transform decimals correctly', function () {
+        expect(transform('10.01')).toEqual(10.01);
+        expect(transform('10.00')).toEqual(10);
+        expect(transform('0.00')).toEqual(0);
+        expect(transform('10.0')).toEqual(10);
+        expect(transform('5.55555')).toEqual(5.55555);
+    });
+
 });
