@@ -38,7 +38,7 @@ function splitLine(str) {
         str = str.replace(output ? 'OUTPUT' : '', '').trim();
     const name = str.slice(0, str.indexOf(' ')).trim(),
         type = str.match(/\s\w+\s/gi) && str.match(/\s\w+\s/gi)[0].trim(),
-        value = str.replace(name, '').replace(type ? type : '', '').trim();
+        value = str.replace(name, '').replace(type || '', '').trim();
     return {
         name,
         ...(type && {type}),
