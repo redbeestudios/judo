@@ -54,4 +54,27 @@ describe('Parse stored procedure arguments from docType', function () {
                 {name: 'my_number', value: 1, type: 'Int', output: true}
             ]);
     });
+
+    it('should parse decimals without a type from one line', function () {
+        expect(argumentsParser(
+            'my_number 10.0'
+        )).toEqual([
+            {name: 'my_number', value: 10.0}
+        ]);
+    });
+
+    it('should parse nulls given an OUTPUT at the end', function () {
+        expect(argumentsParser('my_arg null OUTPUT'))
+            .toEqual([
+                {name: 'my_arg', value: null, output: true}
+            ]);
+    });
+
+    it('should parse strings without quotes given an OUTPUT at the end', function () {
+        expect(argumentsParser('my_string hola OUTPUT'))
+            .toEqual([
+                {name: 'my_string', value: 'hola', output: true}
+            ]);
+    });
+
 });
