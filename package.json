@@ -1,6 +1,6 @@
 {
   "name": "judo",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "SQL Stored Procedures Testing Made SIMPLE",
   "scripts": {
     "start": "./bin/judo",
