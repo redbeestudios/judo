@@ -69,7 +69,7 @@ $ npx judo [features_dir] --judo.sandbox
 ```
 
 ### Examples
-See [docs/](docs/) directory
+See [docs/examples](docs/examples) directory
 
 ### Available Steps:
  - [English](docs/steps-en.md)
