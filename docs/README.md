@@ -68,9 +68,6 @@ By default every scenario is run inside a TRANSACTION, which is rolled back at t
 $ npx judo [features_dir] --judo.sandbox
 ```
 
-### Examples
-See [docs/](docs/) directory
-
 ### Available Steps:
  - [English](docs/steps-en.md)
  - [Spanish](docs/steps-es.md)
