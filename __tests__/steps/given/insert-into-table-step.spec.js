@@ -1,10 +1,8 @@
 const {insertIntoTableStep} = require('../../../src/steps');
 const {insertIntoTableWithAliasStep} = require('../../../src/steps');
 
-jest.mock('../../src/engine/operations');
-const operations = require('../../../src/engine/operations');
-
-jest.mock('../../src/runtime/transform-data', () => jest.fn(() => true));
+jest.mock('../../../src/engine/operations');
+const {insertInto: insertIntoMock} = require('../../../src/engine/operations');
 
 describe('insert into table step tests', () => {
 
@@ -15,8 +13,7 @@ describe('insert into table step tests', () => {
                 {letter: 'B', number: 2}
             ];
 
-            spyOn(operations, 'insertInto')
-                .mockImplementation(() => Promise.resolve(inserted));
+            insertIntoMock.mockImplementation(() => Promise.resolve(inserted));
 
             const result = await insertIntoTableStep.call(this, 'my_table', {
                 hashes: () => []
@@ -34,8 +31,7 @@ describe('insert into table step tests', () => {
                 {letter: 'B', number: 2}
             ];
 
-            spyOn(operations, 'insertInto')
-                .mockImplementation(() => Promise.resolve(inserted));
+            insertIntoMock.mockImplementation(() => Promise.resolve(inserted));
 
             const result = await insertIntoTableWithAliasStep.call(this, 'my_table', 'alias', {
                 hashes: () => []
@@ -48,8 +44,7 @@ describe('insert into table step tests', () => {
     );
 
     test('should propagate the error', () => {
-        spyOn(operations, 'insertInto')
-            .mockImplementation(() => Promise.reject('An error'));
+        insertIntoMock.mockImplementation(() => Promise.reject('An error'));
 
         return insertIntoTableStep('my_table', {hashes: () => []})
             .catch(e => expect(e).toBe('An error'));
