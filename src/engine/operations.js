@@ -65,7 +65,8 @@ const selectFrom = async (table, fields, order) => {
  * @returns {Promise<Request|Promise>}
  */
 const deleteFrom = async (table) => {
-    return query(deleteStatement(table));
+    return query(deleteStatement(table))
+        .then(result => Promise.resolve(result.rowsAffected[0]));
 };
 
 /**
