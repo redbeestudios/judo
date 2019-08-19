@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const cucumber = require('cucumber/lib/cli/run');
+const Cli = require('cucumber').Cli;
 
 /**
  *
@@ -14,5 +14,11 @@ module.exports.run = async (options) => {
     process.argv.push('--require');
     process.argv.push(__dirname + '/cucumber/');
 
-    await cucumber.default();
+    let cli = new Cli({
+        argv: process.argv,
+        cwd: process.cwd(),
+        stdout: process.stdout,
+    });
+
+    await cli.run();
 };

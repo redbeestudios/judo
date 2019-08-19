@@ -1,11 +1,10 @@
 {
-  "name": "judo",
-  "version": "0.1.0",
+  "name": "@lt-mayonesa/judo",
+  "version": "0.1.1",
   "description": "SQL Stored Procedures Testing Made SIMPLE",
   "scripts": {
     "start": "./bin/judo",
-    "test": "npm run unit && npm run integration",
-    "unit": "jasmine --config=jasmine.json",
+    "test": "npm run unit",
     "integration": "./bin/judo __tests__/"
   },
   "bin": {
@@ -13,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TodoPago/base_de_datos.git"
+    "url": "git+https://github.com/redbeestudios/judo.git"
   },
   "keywords": [
     "cucumber.js",
@@ -23,10 +22,6 @@
   ],
   "author": "joaquin@redb.ee",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TodoPago/base_de_datos/issues"
-  },
-  "homepage": "https://github.com/TodoPago/base_de_datos#readme",
   "dependencies": {
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
