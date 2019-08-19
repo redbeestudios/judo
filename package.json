@@ -5,7 +5,7 @@
   "scripts": {
     "start": "./bin/judo",
     "test": "npm run unit",
-    "unit": "jasmine --config=jasmine.json",
+    "unit": "jest --config jest.config.json",
     "integration": "./bin/judo __tests__/"
   },
   "bin": {
@@ -27,9 +27,11 @@
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
     "cucumber": "^5.1.0",
-    "jasmine": "^3.4.0",
     "moment": "^2.24.0",
     "mssql": "^5.0.5",
     "yargs": "^13.2.2"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }

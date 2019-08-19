@@ -1,0 +1,5 @@
+{
+  "roots": ["__tests__"],
+  "collectCoverage": true,
+  "coverageDirectory": "docs/coverage/"
+}
