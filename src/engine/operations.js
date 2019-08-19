@@ -6,6 +6,17 @@ const deleteStatement = require('./statements/delete');
 const selectValueStatement = require('./statements/select-value');
 
 /**
+ * @typedef {Object<string, *>} ProcedureOutputs
+ */
+
+/**
+ * @typedef {Object} ProcedureResult
+ * @property {*} returnValue
+ * @property {ProcedureOutputs} output
+ */
+
+
+/**
  * Run a INSERT INTO to table
  *
  * @param {string} table
@@ -22,7 +33,7 @@ const insertInto = async (table, data) => {
  *
  * @param {string} sp a valid stored procedure
  * @param {Array<ProcedureArgument>} [args]
- * @returns {Promise<void>}
+ * @returns {Promise<ProcedureResult>}
  */
 const exec = async (sp, args) => {
     const req = request();
