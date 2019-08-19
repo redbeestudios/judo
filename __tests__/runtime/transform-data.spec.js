@@ -34,7 +34,10 @@ describe('transform data from cucumber data tables', function () {
     });
 
     it('should transform a date value correctly', function () {
-        expect(transform('2019-01-01 00:10:00')).toEqual(moment.utc('2019-01-01 00:10:00').toDate());
+        spyOn(moment, 'utc').and.returnValue({
+            toDate: () => new Date('2019-01-01 00:10:00')
+        });
+        expect(transform('2019-01-01 00:10:00')).toEqual(new Date('2019-01-01 00:10:00'));
     });
 
     it('should transform a operation correctly', function () {
@@ -65,6 +68,10 @@ describe('transform data from cucumber data tables', function () {
     });
 
     it('should transform several values correctly', function () {
+        spyOn(moment, 'utc').and.returnValue({
+            toDate: () => new Date('2019-01-01 00:10:00')
+        });
+
         this.letter = 'A';
         expect(transform.call(this, [
             {
@@ -77,13 +84,16 @@ describe('transform data from cucumber data tables', function () {
             {
                 number: 1,
                 text: 'hello',
-                date: moment.utc('2019-01-01 00:10:00').toDate(),
+                date: new Date('2019-01-01 00:10:00'),
                 my_letter: 'A'
             }
         ]);
     });
 
     it('should transform several rows correctly', function () {
+        spyOn(moment, 'utc').and.returnValue({
+            toDate: () => new Date('2019-01-01 00:10:00')
+        });
         this.letter = 'A';
         expect(transform.call(this, [
             {
@@ -100,7 +110,7 @@ describe('transform data from cucumber data tables', function () {
                 text: 'hello'
             },
             {
-                date: moment.utc('2019-01-01 00:10:00').toDate(),
+                date: new Date('2019-01-01 00:10:00'),
                 my_letter: 'A'
             }
         ]);

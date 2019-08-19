@@ -1,4 +1,3 @@
-const moment = require('moment');
 const whereEachRow = require('../../../../src/engine/statements/helpers/where-each-row');
 
 describe('Create a concatenation of ORs for each row in data', function () {
@@ -28,10 +27,9 @@ describe('Create a concatenation of ORs for each row in data', function () {
         expect(whereEachRow([
             {
                 my_letter: 'ABC',
-                my_number: 1,
-                my_date: moment.utc('2019-01-01 00:00:00').toDate()
+                my_number: 1
             }
-        ])).toEqual('(my_letter = \'ABC\' AND my_number = 1 AND my_date = \'2019-01-01 00:00:00\')');
+        ])).toEqual('(my_letter = \'ABC\' AND my_number = 1)');
     });
 
     it('should separate rows with ORs given many rows', function () {
@@ -53,23 +51,20 @@ describe('Create a concatenation of ORs for each row in data', function () {
         expect(whereEachRow([
             {
                 my_letter: 'ABC',
-                my_number: 1,
-                my_date: moment.utc('2019-01-01 00:00:00').toDate()
+                my_number: 1
             },
             {
                 my_letter: 'DEF',
-                my_number: 2,
-                my_date: moment.utc('2018-01-01 00:00:00').toDate()
+                my_number: 2
             },
             {
                 my_letter: 'GHI',
-                my_number: 3,
-                my_date: moment.utc('2017-01-01 00:00:00').toDate()
+                my_number: 3
             }
         ])).toEqual(
-            '(my_letter = \'ABC\' AND my_number = 1 AND my_date = \'2019-01-01 00:00:00\') OR ' +
-            '(my_letter = \'DEF\' AND my_number = 2 AND my_date = \'2018-01-01 00:00:00\') OR ' +
-            '(my_letter = \'GHI\' AND my_number = 3 AND my_date = \'2017-01-01 00:00:00\')'
+            '(my_letter = \'ABC\' AND my_number = 1) OR ' +
+            '(my_letter = \'DEF\' AND my_number = 2) OR ' +
+            '(my_letter = \'GHI\' AND my_number = 3)'
         );
     });
 

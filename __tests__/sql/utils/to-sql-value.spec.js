@@ -1,4 +1,5 @@
 const toSQLValue = require('../../../src/engine/utils/to-sql-value');
+const moment = require('moment');
 
 describe('Convert js values to sql', function () {
 
@@ -31,7 +32,10 @@ describe('Convert js values to sql', function () {
     });
 
     it('should convert Date to SQL datetime accepted format', function () {
+        spyOn(moment, 'utc').and.returnValue({
+            format: () => '2019-05-01 00:00:00'
+        });
         let d = new Date('2019-05-01 00:00:00');
-        expect(toSQLValue(d)).toEqual('\'2019-05-01 03:00:00\'');
+        expect(toSQLValue(d)).toEqual('\'2019-05-01 00:00:00\'');
     });
 });
