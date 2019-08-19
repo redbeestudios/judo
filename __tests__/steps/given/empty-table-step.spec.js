@@ -1,7 +1,7 @@
-const {emptyTableStep} = require('../../src/steps');
+const {emptyTableStep} = require('../../../src/steps');
 
 jest.mock('../../src/engine/operations');
-const operations = require('../../src/engine/operations');
+const operations = require('../../../src/engine/operations');
 
 describe('Empty Table Step: delete all entries from a table', () => {
 

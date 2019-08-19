@@ -1,7 +1,7 @@
-const step = require('../../src/steps').callFunctionStep;
+const step = require('../../../src/steps').callFunctionStep;
 
 jest.mock('../../src/engine/operations');
-const operations = require('../../src/engine/operations');
+const operations = require('../../../src/engine/operations');
 
 describe('call a function on the engine and store the result', () => {
 

@@ -1,8 +1,8 @@
-const {insertIntoTableStep} = require('../../src/steps');
-const {insertIntoTableWithAliasStep} = require('../../src/steps');
+const {insertIntoTableStep} = require('../../../src/steps');
+const {insertIntoTableWithAliasStep} = require('../../../src/steps');
 
 jest.mock('../../src/engine/operations');
-const operations = require('../../src/engine/operations');
+const operations = require('../../../src/engine/operations');
 
 jest.mock('../../src/runtime/transform-data', () => jest.fn(() => true));
 
