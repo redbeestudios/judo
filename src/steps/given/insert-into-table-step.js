@@ -36,12 +36,9 @@ module.exports.insertIntoTableStep = function (table, data) {
  * @param {Object} data
  * @returns {Promise<Array<Object<string, *>>>}
  */
-function insertIntoTable(table, alias, data) {
-    return insertInto(table, transform.call(this, data.hashes()))
-        .then(data => {
-            this.$ = data;
-            if (alias)
-                this[alias] = data;
-            return Promise.resolve(data);
-        });
+async function insertIntoTable(table, alias, data) {
+    this.$ = await insertInto(table, transform.call(this, data.hashes()));
+    if (alias)
+        this[alias] = this.$;
+    return this.$;
 }
