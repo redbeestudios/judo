@@ -5,6 +5,7 @@
   "scripts": {
     "start": "./bin/judo",
     "test": "npm run unit",
+    "unit": "jasmine --config=jasmine.json",
     "integration": "./bin/judo __tests__/"
   },
   "bin": {
