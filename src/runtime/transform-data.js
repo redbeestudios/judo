@@ -4,13 +4,13 @@ moment.suppressDeprecationWarnings = true;
 /**
  *
  * @param {Array<Object<string, string>>|string} args
- * @returns {Array<Object<string, *>>}
+ * @returns {Array<Object<string, *>>|string}
  */
-module.exports = function (args) {
+module.exports = function transform(args) {
     if (Array.isArray(args))
         return args.map(transformCollection.bind(this));
     else
-        return transform.call(this, args);
+        return transformOne.call(this, args);
 };
 
 /**
@@ -19,7 +19,7 @@ module.exports = function (args) {
  * @returns {Object<string, *>}
  */
 function transformCollection(obj) {
-    Object.keys(obj).forEach(key => obj[key] = transform.call(this, obj[key]));
+    Object.keys(obj).forEach(key => obj[key] = transformOne.call(this, obj[key]));
     return obj;
 }
 
@@ -28,7 +28,7 @@ function transformCollection(obj) {
  * @param {string} value
  * @returns {*}
  */
-function transform(value) {
+function transformOne(value) {
     try {
         value = executeJs(value);
     } catch (e) {
@@ -42,7 +42,7 @@ function transform(value) {
             value = transformTableAccess.call(this, value);
         } else if (value.match(/\$\w+/)) {
             value = transformVariablesInString.call(this, value);
-        } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss.SSS','YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
+        } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss.SSS', 'YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
             value = moment.utc(value).toDate();
         }
     }
