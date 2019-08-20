@@ -1,5 +1,15 @@
 {
-  "roots": ["__tests__"],
   "collectCoverage": true,
-  "coverageDirectory": "docs/coverage/"
+  "collectCoverageFrom": [
+    "src/**/*.js",
+    "!src/cucumber/**/*.js"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 60,
+      "functions": 60,
+      "lines": 60,
+      "statements": 60
+    }
+  }
 }
