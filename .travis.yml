@@ -10,12 +10,19 @@ branches:
     - develop
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
+services:
+  - docker
+
 install:
   - npm install
 
 cache:
   directories:
     - node_modules
+
+before_script:
+  - docker run -d -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Password01' --net host -v $PWD/__tests__/features/:/home/ --name sql-server microsoft/mssql-server-linux:2017-CU1
+  - docker exec sql-server /opt/mssql-tools/bin/sqlcmd -S tcp:localhost,1433 -U sa -P Password01 -i /home/schema.sql
 
 script:
   - npm run test
