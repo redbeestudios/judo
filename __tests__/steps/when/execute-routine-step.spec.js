@@ -2,14 +2,13 @@ const {executeRoutineStep} = require('../../../src/steps');
 const {executeRoutineWithArgsStep} = require('../../../src/steps');
 
 jest.mock('../../../src/engine/operations');
-const operations = require('../../../src/engine/operations');
+const {exec: execMock} = require('../../../src/engine/operations');
 
 describe('execute a routine', () => {
 
     test('should execute a routine defined in the database',
         async () => {
-            spyOn(operations, 'exec')
-                .mockImplementation(() => Promise.resolve({
+            execMock.mockImplementation(() => Promise.resolve({
                     returnValue: 'MY RESULT'
                 }));
 
@@ -23,8 +22,7 @@ describe('execute a routine', () => {
     );
 
     test('should propagate the error', () => {
-        spyOn(operations, 'exec')
-            .mockImplementation(() => Promise.reject('An error'));
+        execMock.mockImplementation(() => Promise.reject('An error'));
 
         return executeRoutineStep('my_routine')
             .catch(e => expect(e).toBe('An error'));
@@ -40,8 +38,7 @@ describe('execute a routine', () => {
                     }
                 ]));
 
-            spyOn(operations, 'exec')
-                .mockImplementation(() => Promise.resolve({
+            execMock.mockImplementation(() => Promise.resolve({
                     returnValue: 'MY RESULT'
                 }));
 
@@ -65,8 +62,7 @@ describe('execute a routine', () => {
                     }
                 ]));
 
-            spyOn(operations, 'exec')
-                .mockImplementation(() => Promise.resolve({
+            execMock.mockImplementation(() => Promise.resolve({
                     returnValue: 'MY RESULT',
                     output: {
                         my_arg: 2
@@ -87,8 +83,7 @@ describe('execute a routine', () => {
     );
 
     test('should propagate the error when calling with args', () => {
-        spyOn(operations, 'exec')
-            .mockImplementation(() => Promise.reject('An error'));
+        execMock.mockImplementation(() => Promise.reject('An error'));
 
         return executeRoutineWithArgsStep('my_routine', 'alias')
             .catch(e => expect(e).toBe('An error'));

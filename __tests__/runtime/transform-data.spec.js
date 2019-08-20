@@ -1,4 +1,4 @@
-const moment = require('moment/moment');
+const moment = require('moment');
 const transform = require('../../src/runtime/transform-data');
 
 describe('transform data from cucumber data tables', function () {
