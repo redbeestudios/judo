@@ -1,6 +1,6 @@
 const transform = require('../../runtime/transform-data');
-const {expect} = require('chai');
+const assert = require('../../runtime/assertion');
 
 module.exports = function (key, value) {
-    expect(transform.call(this, key)).equal(transform.call(this, value));
+    assert(transform.call(this, key), transform.call(this, value));
 };

@@ -1,5 +1,5 @@
 const {selectFrom} = require('../../engine/operations');
-const {expect} = require('chai');
+const assert = require('../../runtime/assertion');
 
 /**
  * Validate the table has no records at all (is empty)
@@ -9,5 +9,5 @@ const {expect} = require('chai');
  */
 module.exports = function tableIsEmptyStep(table) {
     return selectFrom(table)
-        .then(result => expect(result).to.eql([]));
+        .then(result => assert([], result));
 };
