@@ -22,4 +22,7 @@ const argv = yargs
 require('../src')
     .run(argv)
     .then(() => console.log('DONE'))
-    .catch(console.error);
+    .catch(error => {
+        console.error(error);
+        process.exit(1);
+    });
