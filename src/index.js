@@ -5,7 +5,7 @@ const Cli = require('cucumber').Cli;
  *
  * @returns {Promise<void>}
  */
-module.exports.run = async (options) => {
+module.exports.run = (options) => {
     const config = require('./runtime/config')(options);
 
     if (config.judo.sandbox)
@@ -17,8 +17,9 @@ module.exports.run = async (options) => {
     let cli = new Cli({
         argv: process.argv,
         cwd: process.cwd(),
-        stdout: process.stdout,
+        stdout: process.stdout
     });
 
-    await cli.run();
+    return cli.run()
+        .catch(error => Promise.reject(error.jse_cause.originalError));
 };
