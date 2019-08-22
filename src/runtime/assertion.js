@@ -13,13 +13,15 @@ module.exports = function assertEquals(expected, actual, message) {
     const equals = deepEqual(expected, actual, {comparator});
 
     if (!equals)
-        throw new JudoError(
-            message || `Expected ${expected} but got ${actual}`,
-            {
-                actual,
-                expected
-            },
-            assertEquals);
+        return Promise.reject(
+            new JudoError(
+                message || `Expected ${expected} but got ${actual}`,
+                {
+                    actual,
+                    expected
+                },
+                assertEquals)
+        );
 
-    return equals;
+    return Promise.resolve(equals);
 };
