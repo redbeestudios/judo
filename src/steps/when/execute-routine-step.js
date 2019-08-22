@@ -50,10 +50,8 @@ async function executeRoutine(storedProcedure, args) {
 
     this.$returned = result.returnValue;
 
-    for (let key in result.output) {
-        if (result.output.hasOwnProperty(key))
-            this['$' + key] = transform.call(this, result.output[key]);
-    }
+    Object.keys(result.output || {})
+        .forEach(key => this['$' + key] = transform.call(this, result.output[key]));
 
     return result;
 }
