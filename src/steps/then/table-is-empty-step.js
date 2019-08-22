@@ -1,5 +1,5 @@
 const {selectFrom} = require('../../engine/operations');
-const assert = require('../../runtime/assertion');
+const assertEquals = require('../../runtime/assertion');
 
 /**
  * Validate the table has no records at all (is empty)
@@ -9,5 +9,5 @@ const assert = require('../../runtime/assertion');
  */
 module.exports = function tableIsEmptyStep(table) {
     return selectFrom(table)
-        .then(result => assert([], result));
+        .then(result => assertEquals([], result));
 };

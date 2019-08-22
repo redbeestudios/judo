@@ -9,16 +9,17 @@ class JudoError extends AssertionError {
     }
 }
 
-module.exports = function assert(expected, actual) {
-    const equals = deepEqual(expected, actual, {comparator: comparator});
+module.exports = function assertEquals(expected, actual, message) {
+    const equals = deepEqual(expected, actual, {comparator});
 
     if (!equals)
         throw new JudoError(
-            `Expected ${expected} but got ${actual}`,
+            message || `Expected ${expected} but got ${actual}`,
             {
                 actual,
                 expected
-            }, assert);
+            },
+            assertEquals);
 
     return equals;
 };

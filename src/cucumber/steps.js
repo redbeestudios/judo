@@ -30,6 +30,9 @@ Given('llamo a la funcion {any} como {any}', callFunctionStep);
 Given('I read {tableField} from table {tableName} when {tableField} equals {any}', selectValueStep);
 Given('leo {tableField} de la tabla {tableName} cuando {tableField} es {any}', selectValueStep);
 
+Given('I save {any} as {any}', defineVariableStep);
+Given('guardo {any} como {any}', defineVariableStep);
+
 // WHENS
 When('I execute {tableName}', executeRoutineStep);
 When('ejecuto el sp {tableName}', executeRoutineStep);
@@ -38,9 +41,6 @@ When('I execute {tableName} with args:', executeRoutineWithArgsStep);
 When('ejecuto el sp {tableName} con los argumentos:', executeRoutineWithArgsStep);
 
 // THENS
-Then('I save {any} as {any}', defineVariableStep);
-Then('guardo {any} como {any}', defineVariableStep);
-
 Then('variable {any} should equal {any}', variableEqualsStep);
 Then('la variable {any} debería ser igual a {any}', variableEqualsStep);
 

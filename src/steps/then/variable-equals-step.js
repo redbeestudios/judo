@@ -1,6 +1,6 @@
 const transform = require('../../runtime/transform-data');
-const assert = require('../../runtime/assertion');
+const assertEquals = require('../../runtime/assertion');
 
 module.exports = function (key, value) {
-    assert(transform.call(this, key), transform.call(this, value));
+    assertEquals(transform.call(this, key), transform.call(this, value));
 };
