@@ -21,5 +21,16 @@ module.exports.run = (options) => {
     });
 
     return cli.run()
-        .catch(error => Promise.reject(error.jse_cause.originalError));
+        .then(processFinished)
+        .catch(processError);
 };
+
+function processFinished(result) {
+    return result.success ?
+        Promise.resolve(result) :
+        Promise.reject('Error: some steps failed!');
+}
+
+function processError(error) {
+    return Promise.reject((error.jse_cause && error.jse_cause.originalError) || error);
+}
