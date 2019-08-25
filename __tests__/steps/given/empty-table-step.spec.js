@@ -1,7 +1,7 @@
 const {emptyTableStep} = require('../../../src/steps');
 
-jest.mock('../../../src/engine/mssql/operations');
-const {deleteFrom: deleteFromMock} = require('../../../src/engine/mssql/operations');
+jest.mock('../../../src/engine/operations');
+const {deleteFrom: deleteFromMock} = require('../../../src/engine/operations');
 
 describe('Empty Table Step: delete all entries from a table', () => {
 

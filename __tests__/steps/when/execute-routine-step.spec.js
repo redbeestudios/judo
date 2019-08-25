@@ -1,8 +1,8 @@
 const {executeRoutineStep} = require('../../../src/steps');
 const {executeRoutineWithArgsStep} = require('../../../src/steps');
 
-jest.mock('../../../src/engine/mssql/operations');
-const {exec: execMock} = require('../../../src/engine/mssql/operations');
+jest.mock('../../../src/engine/operations');
+const {exec: execMock} = require('../../../src/engine/operations');
 
 describe('execute a routine', () => {
 

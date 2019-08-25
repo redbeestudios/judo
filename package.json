@@ -30,6 +30,7 @@
     "deep-eql": "^4.0.0",
     "moment": "^2.24.0",
     "mssql": "^5.0.5",
+    "oracledb": "^4.0.1",
     "yargs": "^13.2.2"
   },
   "devDependencies": {

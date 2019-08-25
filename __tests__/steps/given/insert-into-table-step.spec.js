@@ -1,8 +1,8 @@
 const {insertIntoTableStep} = require('../../../src/steps');
 const {insertIntoTableWithAliasStep} = require('../../../src/steps');
 
-jest.mock('../../../src/engine/mssql/operations');
-const {insertInto: insertIntoMock} = require('../../../src/engine/mssql/operations');
+jest.mock('../../../src/engine/operations');
+const {insertInto: insertIntoMock} = require('../../../src/engine/operations');
 
 describe('insert into table step tests', () => {
 
