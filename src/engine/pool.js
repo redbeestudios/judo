@@ -6,7 +6,7 @@ const close = () => {
 };
 
 const connect = () => {
-    return sql.connect(config.sql);
+    return sql.connect(config.mssql);
 };
 
 let globalTransaction = null;
