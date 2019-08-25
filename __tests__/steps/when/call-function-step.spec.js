@@ -1,5 +1,9 @@
 const {callFunctionStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
 jest.mock('../../../src/engine/operations');
 const {callFunction: callFunctionMock} = require('../../../src/engine/operations');
 

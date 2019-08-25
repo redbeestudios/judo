@@ -1,5 +1,10 @@
 const {defineVariableStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
+
 describe('define variable in test context', () => {
 
     test('should store value in given key',

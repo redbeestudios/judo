@@ -1,6 +1,10 @@
 const {executeRoutineStep} = require('../../../src/steps');
 const {executeRoutineWithArgsStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
 jest.mock('../../../src/engine/operations');
 const {exec: execMock} = require('../../../src/engine/operations');
 

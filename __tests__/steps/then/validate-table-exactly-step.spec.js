@@ -1,5 +1,9 @@
 const {validateTableExactlyStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
 jest.mock('../../../src/engine/operations');
 const {selectFrom: selectFromMock} = require('../../../src/engine/operations');
 

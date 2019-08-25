@@ -1,6 +1,10 @@
 const {insertIntoTableStep} = require('../../../src/steps');
 const {insertIntoTableWithAliasStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
 jest.mock('../../../src/engine/operations');
 const {insertInto: insertIntoMock} = require('../../../src/engine/operations');
 

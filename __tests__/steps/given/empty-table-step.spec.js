@@ -1,9 +1,16 @@
 const {emptyTableStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
 jest.mock('../../../src/engine/operations');
 const {deleteFrom: deleteFromMock} = require('../../../src/engine/operations');
 
 describe('Empty Table Step: delete all entries from a table', () => {
+
+    beforeEach(() => {
+    });
 
     test('should delete entries and store the result in the context',
         async () => {

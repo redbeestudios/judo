@@ -1,24 +1,21 @@
-const {After, AfterAll, Before, BeforeAll} = require('cucumber');
-const {connect, close, newTransaction, transaction} = require('../engine/pool');
-const config = require('../runtime/config')();
+const {
+    After,
+    AfterAll,
+    Before,
+    BeforeAll
+} = require('cucumber');
 
-BeforeAll(function () {
-    return connect();
-});
+const {
+    connect,
+    close,
+    beginTransaction,
+    endTransaction
+} = require('../engine/pool');
 
-Before(function () {
-    newTransaction();
-    return transaction().begin();
-});
+BeforeAll(connect);
 
-After(function () {
-    if (config.judo.sandbox)
-        return transaction().commit();
-    else
-        return transaction().rollback();
-});
+Before(beginTransaction);
 
+After(endTransaction);
 
-AfterAll(function () {
-    return close();
-});
+AfterAll(close);

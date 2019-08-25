@@ -6,17 +6,6 @@ const deleteStatement = require('./statements/delete');
 const selectValueStatement = require('./statements/select-value');
 
 /**
- * @typedef {Object<string, *>} ProcedureOutputs
- */
-
-/**
- * @typedef {Object} ProcedureResult
- * @property {*} returnValue
- * @property {ProcedureOutputs} output
- */
-
-
-/**
  * Run a INSERT INTO to table
  *
  * @param {string} table

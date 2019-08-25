@@ -1,4 +1,5 @@
-const operations = require('./mssql/operations');
+const CONFIG = require('../runtime/config')();
+const operations = require(`./${CONFIG.judo.engine}/operations`);
 
 /**
  * @typedef {Object<string, *>} ProcedureOutputs

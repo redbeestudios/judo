@@ -1,5 +1,10 @@
 const {variableEqualsStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
+
 describe('assert equality on two values', () => {
 
     test('should be equals when passing direct values',

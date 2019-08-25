@@ -1,38 +1,66 @@
 const sql = require('mssql');
 const config = require('../../runtime/config')();
 
-const close = () => {
-    return sql.close();
-};
-
-const connect = () => {
-    return sql.connect(config.mssql);
-};
-
 let globalTransaction = null;
 
+/**
+ *
+ * @returns {Promise<ConnectionPool>}
+ */
+function close() {
+    return sql.close();
+}
+
+/**
+ *
+ * @returns {Promise<ConnectionPool>}
+ */
+function connect() {
+    return sql.connect(config.mssql);
+}
+
+/**
+ * Create a new mssql transaction and assign it as the global transaction
+ *
+ * @returns {Transaction}
+ */
 const newTransaction = () => {
-    globalTransaction = new sql.Transaction();
+    return (globalTransaction = new sql.Transaction()).begin();
 };
 
-const transaction = () => globalTransaction;
+/**
+ *
+ * @returns {Promise<Transaction>}
+ */
+function rollbackTransaction() {
+    return globalTransaction.rollback();
+}
+
+/**
+ *
+ * @returns {Promise<Transaction>}
+ */
+function commitTransaction() {
+    return globalTransaction.rollback();
+}
 
 /**
  * Get the correct request object.
  *
  * @returns {Request}
  */
-const request = () => {
+function request() {
     if (globalTransaction)
         return globalTransaction.request();
     else
         return (new sql.Request());
-};
+}
 
 module.exports = {
     request,
-    transaction,
     newTransaction,
+    commitTransaction,
+    rollbackTransaction,
     connect,
     close
 };

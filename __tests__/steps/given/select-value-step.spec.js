@@ -1,5 +1,9 @@
 const {selectValueStep} = require('../../../src/steps');
 
+jest.mock('../../../src/runtime/config', () => () => {
+    return {judo: {engine: 'mssql'}};
+});
+
 jest.mock('../../../src/engine/operations');
 const {selectValue: selectValueMock} = require('../../../src/engine/operations');
 
