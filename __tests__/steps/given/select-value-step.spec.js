@@ -1,7 +1,7 @@
 const {selectValueStep} = require('../../../src/steps');
 
-jest.mock('../../../src/engine/operations');
-const {selectValue: selectValueMock} = require('../../../src/engine/operations');
+jest.mock('../../../src/engine/mssql/operations');
+const {selectValue: selectValueMock} = require('../../../src/engine/mssql/operations');
 
 describe('insert into table step tests', () => {
 

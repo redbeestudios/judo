@@ -1,9 +1,4 @@
-const sql = require('mssql');
-const {request} = require('./pool');
-const insertStatement = require('./statements/insert-output');
-const selectStatement = require('./statements/select');
-const deleteStatement = require('./statements/delete');
-const selectValueStatement = require('./statements/select-value');
+const operations = require('./mssql/operations');
 
 /**
  * @typedef {Object<string, *>} ProcedureOutputs
@@ -23,10 +18,9 @@ const selectValueStatement = require('./statements/select-value');
  * @param {Array<Object<string, *>>} data
  * @returns {Promise<void>}
  */
-const insertInto = async (table, data) => {
-    return query(insertStatement(table, data))
-        .then(result => Promise.resolve(result.recordset));
-};
+async function insertInto(table, data) {
+    return operations.insertInto(table, data);
+}
 
 /**
  * Execute a SQL Stored Procedure
@@ -35,27 +29,10 @@ const insertInto = async (table, data) => {
  * @param {Array<ProcedureArgument>} [args]
  * @returns {Promise<ProcedureResult>}
  */
-const exec = async (sp, args) => {
-    const req = request();
-    if (args) {
-        args.forEach(arg => {
-            if (arg.type)
-                req[arg.output ? 'output' : 'input'](arg.name, sql[arg.type], arg.value);
-            else {
-                if (arg.output)
-                    req.output(arg.name, null, arg.value);
-                else
-                    req.input(arg.name, arg.value);
-            }
-        });
-    }
-    return req.execute(sp).then(result => {
-        return {
-            returnValue: result.returnValue,
-            output: result.output
-        };
-    });
-};
+async function exec(sp, args) {
+    return operations.exec(sp, args);
+}
+
 /**
  * Run a SELECT against a table
  *
@@ -64,10 +41,9 @@ const exec = async (sp, args) => {
  * @param {Array<string>} [order]
  * @returns {Promise<void>}
  */
-const selectFrom = async (table, fields, order) => {
-    return query(selectStatement(table, fields, order))
-        .then(result => result.recordset);
-};
+async function selectFrom(table, fields, order) {
+    return operations.selectFrom(table, fields, order);
+}
 
 /**
  * Delete all data from a table
@@ -75,10 +51,9 @@ const selectFrom = async (table, fields, order) => {
  * @param {string} table
  * @returns {Promise<Request|Promise>}
  */
-const deleteFrom = async (table) => {
-    return query(deleteStatement(table))
-        .then(result => Promise.resolve(result.rowsAffected[0]));
-};
+async function deleteFrom(table) {
+    return operations.deleteFrom(table);
+}
 
 /**
  * Call a custom or native SQL function
@@ -86,12 +61,9 @@ const deleteFrom = async (table) => {
  * @param {string} func
  * @returns {Promise<*|*>}
  */
-const callFunction = async (func) => {
-    return query(`SELECT ${func} as r;`)
-        .then(result => {
-            return Promise.resolve(result.recordset[0].r);
-        });
-};
+async function callFunction(func) {
+    return operations.callFunction(func);
+}
 
 /**
  * Select a single value from a table based on a single equals condition
@@ -102,24 +74,9 @@ const callFunction = async (func) => {
  * @param {string} value
  * @returns {Promise<* | *>}
  */
-const selectValue = async (field, table, filterBy, value) => {
-    return query(selectValueStatement(field, table, filterBy, value))
-        .then(result => {
-            if (!result.recordset.length)
-                return Promise.reject(`No records found by ${filterBy} = ${value}`);
-            return Promise.resolve(result.recordset[0][field]);
-        });
-};
-
-/**
- * Run a custom SQL QUERY
- *
- * @param query
- * @returns {Promise<*>}
- */
-const query = async (query) => {
-    return request().query(query);
-};
+async function selectValue(field, table, filterBy, value) {
+    return operations.selectValue(field, table, filterBy, value);
+}
 
 module.exports = {
     exec,

@@ -1,6 +1,6 @@
-const selectValue = require('../../../src/engine/statements/select-value');
+const selectValue = require('../../../../src/engine/mssql/statements/select-value');
 
-describe('Create a sql select statement from a table name and an array of fields', function () {
+describe('Create a mssql select statement from a table name and an array of fields', function () {
 
     test('should create select statement given a number value', function () {
         expect(selectValue('field_a', 'test_table', 'field_b', 1)).toEqual('SELECT field_a FROM test_table WHERE field_b = 1');

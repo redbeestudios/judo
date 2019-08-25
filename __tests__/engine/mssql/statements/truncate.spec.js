@@ -1,4 +1,4 @@
-const truncate = require('../../../src/engine/statements/delete');
+const truncate = require('../../../../src/engine/mssql/statements/delete');
 
 describe('Create a SQL statement to empty a table', function () {
 

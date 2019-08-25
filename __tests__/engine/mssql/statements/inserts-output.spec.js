@@ -1,6 +1,6 @@
-const inserts = require('../../../src/engine/statements/insert-output');
+const inserts = require('../../../../src/engine/mssql/statements/insert-output');
 
-describe('Create sql inserts that output the result from a collection of objects', function () {
+describe('Create mssql inserts that output the result from a collection of objects', function () {
 
     test('should create a correct INSERT OUTPUT statement given a one number column', function () {
         expect(inserts('test_table', [{

@@ -1,36 +1,25 @@
-const sql = require('mssql');
-const config = require('../runtime/config')();
+// const config = require('../../runtime/config')();
 
-const close = () => {
-    return sql.close();
-};
+const pool = require('./mssql/pool');
 
-const connect = () => {
-    return sql.connect(config.mssql);
-};
+function close() {
+    return pool.close();
+}
 
-let globalTransaction = null;
+function connect() {
+    return pool.connect();
+}
 
-const newTransaction = () => {
-    globalTransaction = new sql.Transaction();
-};
 
-const transaction = () => globalTransaction;
+function newTransaction() {
+    pool.newTransaction();
+}
 
-/**
- * Get the correct request object.
- *
- * @returns {Request}
- */
-const request = () => {
-    if (globalTransaction)
-        return globalTransaction.request();
-    else
-        return (new sql.Request());
-};
+function transaction() {
+    return pool.transaction();
+}
 
 module.exports = {
-    request,
     transaction,
     newTransaction,
     connect,

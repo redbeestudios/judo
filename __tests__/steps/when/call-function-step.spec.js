@@ -1,7 +1,7 @@
 const {callFunctionStep} = require('../../../src/steps');
 
-jest.mock('../../../src/engine/operations');
-const {callFunction: callFunctionMock} = require('../../../src/engine/operations');
+jest.mock('../../../src/engine/mssql/operations');
+const {callFunction: callFunctionMock} = require('../../../src/engine/mssql/operations');
 
 describe('call a function on the engine and store the result', () => {
 

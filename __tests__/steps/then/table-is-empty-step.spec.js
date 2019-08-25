@@ -1,7 +1,7 @@
 const {tableIsEmptyStep} = require('../../../src/steps');
 
-jest.mock('../../../src/engine/operations');
-const {selectFrom: selectFromMock} = require('../../../src/engine/operations');
+jest.mock('../../../src/engine/mssql/operations');
+const {selectFrom: selectFromMock} = require('../../../src/engine/mssql/operations');
 
 describe('validate the given table has no records', () => {
 

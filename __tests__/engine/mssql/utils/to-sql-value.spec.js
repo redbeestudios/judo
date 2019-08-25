@@ -1,7 +1,7 @@
-const toSQLValue = require('../../../src/engine/utils/to-sql-value');
+const toSQLValue = require('../../../../src/engine/mssql/utils/to-sql-value');
 const moment = require('moment');
 
-describe('Convert js values to sql', function () {
+describe('Convert js values to mssql', function () {
 
     test('should add quotes to string', function () {
         expect(toSQLValue('word')).toEqual('\'word\'');
