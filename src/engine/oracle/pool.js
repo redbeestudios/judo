@@ -1,22 +1,28 @@
-const sql = require('mssql');
-const config = require('../../runtime/config')().mssql;
+const db = require('oracledb');
+const config = require('../../runtime/config')().oracle;
 
+let connection = null;
 let globalTransaction = null;
 
 /**
  *
- * @returns {Promise<ConnectionPool>}
+ * @returns {Promise<Connection>}
  */
 function close() {
-    return sql.close();
+    return connection && connection.close();
 }
 
 /**
  *
- * @returns {Promise<ConnectionPool>}
+ * @returns {Promise<Connection>}
  */
-function connect() {
-    return sql.connect(config);
+async function connect() {
+    connection = await db.getConnection({
+        user: config.user,
+        password: config.password,
+        connectString: `${config.server}:${config.port}/${config.serviceName}`
+    });
+    return connection;
 }
 
 /**
@@ -25,7 +31,7 @@ function connect() {
  * @returns {Transaction}
  */
 const newTransaction = () => {
-    return (globalTransaction = new sql.Transaction()).begin();
+    return true;
 };
 
 /**
@@ -33,7 +39,7 @@ const newTransaction = () => {
  * @returns {Promise<Transaction>}
  */
 function rollbackTransaction() {
-    return globalTransaction.rollback();
+    return true;
 }
 
 /**
@@ -41,7 +47,7 @@ function rollbackTransaction() {
  * @returns {Promise<Transaction>}
  */
 function commitTransaction() {
-    return globalTransaction.rollback();
+    return true;
 }
 
 /**
@@ -50,10 +56,7 @@ function commitTransaction() {
  * @returns {Request}
  */
 function request() {
-    if (globalTransaction)
-        return globalTransaction.request();
-    else
-        return (new sql.Request());
+    return connection;
 }
 
 module.exports = {

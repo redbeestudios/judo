@@ -6,7 +6,8 @@
     "start": "./bin/judo",
     "test": "npm run unit && npm run integration",
     "unit": "jest --config jest.config.json",
-    "integration": "./bin/judo __tests__/ --judo.engine mssql --mssql.password Password01"
+    "integration": "./bin/judo __tests__/ --judo.engine mssql --mssql.password Password01",
+    "integration:oracle": "./bin/judo __tests__/ --judo.engine oracle --oracle.password Password01"
   },
   "bin": {
     "judo": "./bin/judo"
