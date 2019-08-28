@@ -38,7 +38,7 @@ function splitIntoGroups(rows, groupSize) {
 function toSqlStatement(tableName, rows) {
     return `INSERT INTO ${tableName} (${columns(rows[0])})\n` +
         'VALUES\n' +
-        rows.map(row => `(${values(row)})`).join(',\n') + ';';
+        rows.map(row => `(${values(row)})`).join(',\n');
 }
 
 /**

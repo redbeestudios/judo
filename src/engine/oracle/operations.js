@@ -1,15 +1,19 @@
 const pool = require('./pool');
 const selectStatement = require('../mssql/statements/select');
+const insert = require('../mssql/statements/insert');
 
 /**
  * Run a INSERT INTO to table
  *
  * @param {string} table
  * @param {Array<Object<string, *>>} data
- * @returns {Promise<void>}
+ * @returns {Promise<*>}
  */
 const insertInto = async (table, data) => {
-    return Promise.reject('pending');
+    return execute(insert(table, data))
+        .then(result => {
+            return Promise.resolve(result);
+        });
 };
 
 /**

@@ -10,12 +10,12 @@ const selectValueStatement = require('./statements/select-value');
  *
  * @param {string} table
  * @param {Array<Object<string, *>>} data
- * @returns {Promise<void>}
+ * @returns {Promise<Object<string, *>|Error>}
  */
-const insertInto = async (table, data) => {
+async function insertInto(table, data) {
     return query(insertStatement(table, data))
         .then(result => Promise.resolve(result.recordset));
-};
+}
 
 /**
  * Execute a SQL Stored Procedure
@@ -24,7 +24,7 @@ const insertInto = async (table, data) => {
  * @param {Array<ProcedureArgument>} [args]
  * @returns {Promise<ProcedureResult>}
  */
-const exec = async (sp, args) => {
+async function exec(sp, args) {
     const req = request();
     if (args) {
         args.forEach(arg => {
@@ -44,7 +44,8 @@ const exec = async (sp, args) => {
             output: result.output
         };
     });
-};
+}
+
 /**
  * Run a SELECT against a table
  *
@@ -53,10 +54,10 @@ const exec = async (sp, args) => {
  * @param {Array<string>} [order]
  * @returns {Promise<void>}
  */
-const selectFrom = async (table, fields, order) => {
+async function selectFrom(table, fields, order) {
     return query(selectStatement(table, fields, order))
         .then(result => result.recordset);
-};
+}
 
 /**
  * Delete all data from a table
@@ -64,10 +65,10 @@ const selectFrom = async (table, fields, order) => {
  * @param {string} table
  * @returns {Promise<Request|Promise>}
  */
-const deleteFrom = async (table) => {
+async function deleteFrom(table) {
     return query(deleteStatement(table))
         .then(result => Promise.resolve(result.rowsAffected[0]));
-};
+}
 
 /**
  * Call a custom or native SQL function
@@ -75,12 +76,12 @@ const deleteFrom = async (table) => {
  * @param {string} func
  * @returns {Promise<*|*>}
  */
-const callFunction = async (func) => {
+async function callFunction(func) {
     return query(`SELECT ${func} as r;`)
         .then(result => {
             return Promise.resolve(result.recordset[0].r);
         });
-};
+}
 
 /**
  * Select a single value from a table based on a single equals condition
@@ -91,14 +92,14 @@ const callFunction = async (func) => {
  * @param {string} value
  * @returns {Promise<* | *>}
  */
-const selectValue = async (field, table, filterBy, value) => {
+async function selectValue(field, table, filterBy, value) {
     return query(selectValueStatement(field, table, filterBy, value))
         .then(result => {
             if (!result.recordset.length)
                 return Promise.reject(`No records found by ${filterBy} = ${value}`);
             return Promise.resolve(result.recordset[0][field]);
         });
-};
+}
 
 /**
  * Run a custom SQL QUERY
@@ -106,9 +107,9 @@ const selectValue = async (field, table, filterBy, value) => {
  * @param query
  * @returns {Promise<*>}
  */
-const query = async (query) => {
+async function query(query) {
     return request().query(query);
-};
+}
 
 module.exports = {
     exec,

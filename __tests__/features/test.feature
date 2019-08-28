@@ -6,16 +6,17 @@ Feature: judo works
 
   Scenario: table is empty
     Then my_test_table should be empty
-#
-#  Scenario: add a row to a table
-#
-#    Given a table my_test_table
-#      | my_letter | my_number | my_boolean | my_date             |
-#      | A         | 42        | true       | 2019-03-01 00:00:01 |
-#
-#    Then my_test_table should have
-#      | my_letter | my_number | my_boolean | my_date             |
-#      | A         | 42        | true       | 2019-03-01 00:00:00 |
+
+  Scenario: add a row to a table
+
+    Given a table my_test_table
+      | my_letter | my_number | my_boolean |
+      | A         | 42        | true       |
+      | B         | 42        | true       |
+
+    Then my_test_table should have
+      | my_letter | my_number | my_boolean |
+      | A         | 42        | true       |
 #
 #  Scenario: add a row with a single value to a table
 #
