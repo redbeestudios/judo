@@ -1,5 +1,7 @@
 const db = require('oracledb');
-const config = require('../../runtime/config')().oracle;
+db.outFormat = db.OUT_FORMAT_OBJECT;
+
+const CONFIG = require('../../runtime/config')().oracle;
 
 let connection = null;
 let globalTransaction = null;
@@ -18,9 +20,9 @@ function close() {
  */
 async function connect() {
     connection = await db.getConnection({
-        user: config.user,
-        password: config.password,
-        connectString: `${config.server}:${config.port}/${config.serviceName}`
+        user: CONFIG.user,
+        password: CONFIG.password,
+        connectString: `${CONFIG.server}:${CONFIG.port}/${CONFIG.serviceName}`
     });
     return connection;
 }

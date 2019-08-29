@@ -1,4 +1,4 @@
-const toSQLValue = require('../utils/to-sql-value');
+const toSQLValue = require('./helpers/to-sql-value');
 
 /**
  * Given a collection of rows create a string of mssql INSERTs into the table

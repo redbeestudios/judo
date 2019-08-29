@@ -14,6 +14,9 @@ module.exports.run = (options) => {
     process.argv.push('--require');
     process.argv.push(__dirname + '/cucumber/');
 
+    // process.argv.push('--tags');
+    // process.argv.push('~@ignore');
+
     let cli = new Cli({
         argv: process.argv,
         cwd: process.cwd(),

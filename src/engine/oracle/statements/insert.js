@@ -1,24 +1,31 @@
-const toSQLValue = require('./helpers/to-sql-value');
-
+const toOracleValue = require('./helpers/to-oracle-value');
 /**
- * Given a collection of rows create a string of mssql INSERTs into the table
- * mapping OUTPUT of all fields.
+ * Given a collection of rows create a string of oracle INSERTs into the table.
  *
  * ie:
- * INSERT INTO test_table (a, b, c) OUTPUT inserted.*
- * SELECT 1, 2, 3
- * UNION SELECT 4, 5, 6;
+ * INSERT INTO test_table (a, b, c)
+ * SELECT 1, 2, 3 FROM dual
+ * UNION SELECT 4, 5, 6 FROM dual
  *
  * @param {string} tableName - the table to insert to
  * @param {Array<Object>} rows
  * @param {number} [rowsPerInsert=1000] rows per insert
  * @returns {String}
  */
-module.exports = function (tableName, rows, rowsPerInsert = 1000) {
-    return splitIntoGroups(rows, rowsPerInsert)
-        .map(rows => toSqlStatement(tableName, rows))
-        .join('\n');
+module.exports = function insertInto(tableName, rows, rowsPerInsert = 1000) {
+    return asPLSQL(splitIntoGroups(rows, rowsPerInsert).map(rows => toSqlStatement(tableName, rows)));
 };
+
+/**
+ *
+ * @param {Array<string>} statements
+ * @returns {string}
+ */
+function asPLSQL(statements) {
+    return statements.length > 1 ?
+        'BEGIN\n' + statements.join(';\n') + ';\nEND;' :
+        statements[0];
+}
 
 /**
  * Split rows into an array of arrays of size groupSize
@@ -42,8 +49,8 @@ function splitIntoGroups(rows, groupSize) {
  * @returns {string}
  */
 function toSqlStatement(tableName, rows) {
-    return `INSERT INTO ${tableName} (${columns(rows[0])}) OUTPUT inserted.*\n` +
-        'SELECT ' + rows.map(toValues).join('\nUNION ALL SELECT ') + ';';
+    return `INSERT INTO ${tableName} (${columns(rows[0])})\n` +
+        rows.map(toSelect).join('\nUNION ALL ');
 }
 
 /**
@@ -66,8 +73,15 @@ function columns(row) {
  * @param {Object} row
  * @returns {string}
  */
-function toValues(row) {
-    return Object.values(row)
-        .map(value => toSQLValue(value))
-        .join(', ');
+function toSelect(row) {
+    return 'SELECT ' + values(row) + ' FROM dual';
+}
+
+/**
+ *
+ * @param {Object} row
+ * @returns {string}
+ */
+function values(row) {
+    return Object.values(row).map(value => toOracleValue(value)).join(', ');
 }

@@ -1,8 +1,14 @@
 {
+  "testPathIgnorePatterns": [
+    "__tests__/helpers.js"
+  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
     "src/**/*.js",
     "!src/cucumber/**/*.js"
+  ],
+  "setupFiles": [
+    "./__tests__/helpers.js"
   ],
   "coverageThreshold": {
     "global": {

@@ -16,6 +16,8 @@ BeforeAll(connect);
 
 Before(beginTransaction);
 
+Before('@ignore', () => 'skipped');
+
 After(endTransaction);
 
 AfterAll(close);

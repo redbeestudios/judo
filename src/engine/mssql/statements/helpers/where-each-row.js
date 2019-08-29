@@ -1,4 +1,4 @@
-const toSQLValue = require('../../utils/to-sql-value');
+const toSQLValue = require('./to-sql-value');
 
 /**
  *

@@ -1,5 +1,5 @@
-const toSQLValue = require('../../../../src/engine/mssql/utils/to-sql-value');
-const moment = require('moment');
+const toSQLValue = require('../../../../../src/engine/mssql/statements/helpers/to-sql-value');
+const moment = require('moment/moment');
 
 describe('Convert js values to mssql', function () {
 

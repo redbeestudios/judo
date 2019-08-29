@@ -1,6 +1,8 @@
 const pool = require('./pool');
 const selectStatement = require('../mssql/statements/select');
-const insert = require('../mssql/statements/insert');
+const selectValueStatement = require('../mssql/statements/select-value');
+const deleteFromStatement = require('../mssql/statements/delete');
+const insert = require('./statements/insert');
 
 /**
  * Run a INSERT INTO to table
@@ -10,7 +12,7 @@ const insert = require('../mssql/statements/insert');
  * @returns {Promise<*>}
  */
 const insertInto = async (table, data) => {
-    return execute(insert(table, data))
+    return execute(insert(table, data, 3))
         .then(result => {
             return Promise.resolve(result);
         });
@@ -24,8 +26,9 @@ const insertInto = async (table, data) => {
  * @returns {Promise<ProcedureResult>}
  */
 const exec = async (sp, args) => {
-    return Promise.reject('pending');
+    return Promise.resolve('pending');
 };
+
 /**
  * Run a SELECT against a table
  *
@@ -34,12 +37,12 @@ const exec = async (sp, args) => {
  * @param {Array<string>} [order]
  * @returns {Promise<Array>}
  */
-const selectFrom = async (table, fields, order) => {
+function selectFrom(table, fields, order) {
     return execute(selectStatement(table, fields, order))
         .then(result => {
-            return result.rows;
+            return result.rows.map(toLowerCaseKeys);
         });
-};
+}
 
 /**
  * Delete all data from a table
@@ -48,7 +51,7 @@ const selectFrom = async (table, fields, order) => {
  * @returns {Promise<Request|Promise>}
  */
 const deleteFrom = async (table) => {
-    return execute(`DELETE FROM ${table.toUpperCase()}`);
+    return execute(deleteFromStatement(table));
 };
 
 /**
@@ -58,7 +61,10 @@ const deleteFrom = async (table) => {
  * @returns {Promise<*|*>}
  */
 const callFunction = async (func) => {
-    return Promise.reject('pending');
+    return execute(`SELECT ${func} AS R FROM dual`)
+        .then(result => {
+            return Promise.resolve(result.rows[0].R);
+        });
 };
 
 /**
@@ -71,12 +77,24 @@ const callFunction = async (func) => {
  * @returns {Promise<* | *>}
  */
 const selectValue = async (field, table, filterBy, value) => {
-    return execute('select sys_context( \'userenv\', \'current_schema\' ) from dual');
+    return execute(selectValueStatement(field, table, filterBy, value))
+        .then(result => {
+            if (!result.rows.length)
+                return Promise.reject(`No records found by ${filterBy} = ${value}`);
+            return Promise.resolve(result.rows[0][field.toUpperCase()]);
+        });
 };
 
 function execute(query) {
     console.log(query);
     return pool.request().execute(query);
+}
+
+function toLowerCaseKeys(row) {
+    return Object.keys(row).reduce((acc, cur) => {
+        acc[cur.toLocaleLowerCase()] = row[cur];
+        return acc;
+    }, {});
 }
 
 module.exports = {

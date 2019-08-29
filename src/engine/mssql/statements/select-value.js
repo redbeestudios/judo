@@ -1,4 +1,4 @@
-const toSQLValue = require('../utils/to-sql-value');
+const toSQLValue = require('./helpers/to-sql-value');
 
 /**
  * Build a SELECT statement for a single value
@@ -9,6 +9,6 @@ const toSQLValue = require('../utils/to-sql-value');
  * @param {*} value
  * @returns {string}
  */
-module.exports = function (field, table, filterBy, value) {
+module.exports = function selectValue(field, table, filterBy, value) {
     return `SELECT ${field} FROM ${table} WHERE ${filterBy} = ${toSQLValue(value)}`;
 };

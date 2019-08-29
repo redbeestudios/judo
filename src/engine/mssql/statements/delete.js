@@ -5,5 +5,5 @@
  * @returns {string} - a SQL query
  */
 module.exports = function (table) {
-    return `DELETE FROM ${table};`;
+    return `DELETE FROM ${table}`;
 };
