@@ -1,1 +1,9 @@
-remote_theme: chrisrhymes/bulma-clean-theme
+remote_theme: pmarsceill/just-the-docs
+search_enabled: true
+aux_links:
+  "GitHub":
+    - "https://github.com/redbeestudios/judo"
+  "NPM":
+    - "https://www.npmjs.com/package/@redbee/judo"
+heading_anchors: true
+
