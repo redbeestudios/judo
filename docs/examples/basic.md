@@ -1,13 +1,13 @@
 # SQL Server Basic example
 
 1. Have [Node.js](https://nodejs.org/en/) installed (8 or higher)
-2. Install Judo `npm i @lt-mayonesa/judo`
+2. Install Judo `npm i @redbee/judo`
 2. Have an instance of sql-server running
     > with docker you can do: 
     > ```bash
     > docker run -d -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Password01' -p 1433:1433 microsoft/mssql-server-linux:2017-CU1
     > ```
-3. Configure Judo sql connection creating a sql.conf.js file (see other options in readme). ie:
+3. Configure Judo sql connection creating a `sql.conf.js` file (see other options in readme). ie:
     ```javascript
     module.exports = {
         user: '[user]', // defaults to 'sa'
@@ -110,6 +110,6 @@
 
 7. run Judo:
     ```bash
-    $ npx judo features/
+    $ npx judo features/ --judo.engine mssql
     ```
 8. Profit.
