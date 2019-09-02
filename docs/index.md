@@ -31,11 +31,11 @@ Scenario: calculate monthly summary for one user with several expenses
 ```
 
 ## Supported Engines
-| MSSQL | MySQL | Oracle         | PostgreSQL |
-|:------|:------|:---------------|:-----------|
-|  YES  |   NO  |   IN PROGRESS  |     NO     |
+- [x] MSSQL
+- [ ] MySQL
+- [ ] Oracle (Coming soon, see [feature/oracle](https://github.com/redbeestudios/judo/tree/feature/oracle))
+- [ ] PostgreSQL
 
-Currently Judo can only be used with MSSQL, it's in my intentions to add support for other SQL engines.
 
 ## Install
 ```bash

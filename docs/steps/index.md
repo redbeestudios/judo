@@ -7,3 +7,5 @@ permalink: /steps
 ---
 
 # Steps
+
+Judo is currently available in English and Spanish

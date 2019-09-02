@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Available Steps
+title: Steps (EN)
 nav_order: 2
 parent: Steps
 ---
