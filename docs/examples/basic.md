@@ -1,4 +1,11 @@
-# SQL Server Basic example
+---
+layout: default
+title: SQL Server Basic Example
+nav_order: 2
+parent: Examples
+---
+
+# SQL Server basic example
 
 1. Have [Node.js](https://nodejs.org/en/) installed (8 or higher)
 2. Install Judo `npm i @redbee/judo`

@@ -1,3 +1,8 @@
+title: Judo
+description: SQL Behavior-driven development Testing Framework
+url: https://redbeestudios.github.io/judo/
+
+
 remote_theme: pmarsceill/just-the-docs
 search_enabled: true
 aux_links:

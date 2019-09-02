@@ -1,3 +1,10 @@
+---
+layout: default
+title: Available Steps
+nav_order: 2
+parent: Steps
+---
+
 # Available Steps
 (Given, When, Then)
 

@@ -1,3 +1,9 @@
+---
+layout: default
+title: Judo
+nav_order: 1
+---
+
 # Judo
 [![Build Status](https://travis-ci.org/redbeestudios/judo.svg?branch=master)](https://travis-ci.org/redbeestudios/judo)
 ![David](https://img.shields.io/david/redbeestudios/judo)

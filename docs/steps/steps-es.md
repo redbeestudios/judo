@@ -1,4 +1,11 @@
-## Steps Disponibles
+---
+layout: default
+title: Steps Disponibles
+nav_order: 2
+parent: Steps
+---
+
+# Steps Disponibles
 (Dado, Cuando, Entonces)
 
 ### Dada {nombreDeTabla} está vacia
