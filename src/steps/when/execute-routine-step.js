@@ -11,7 +11,7 @@ const argumentsParser = require('../../runtime/arguments-parser');
  * @returns {Promise<ProcedureResult>} :: the result from the operation
  */
 module.exports.executeRoutineStep = function (routine) {
-    return executeRoutine.call(this, routine, null);
+    return executeRoutine.call(this, routine, undefined);
 };
 
 /**

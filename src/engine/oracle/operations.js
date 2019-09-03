@@ -1,3 +1,4 @@
+const db = require('oracledb');
 const pool = require('./pool');
 const selectStatement = require('../mssql/statements/select');
 const selectValueStatement = require('../mssql/statements/select-value');
@@ -25,8 +26,20 @@ const insertInto = async (table, data) => {
  * @param {Array<ProcedureArgument>} [args]
  * @returns {Promise<ProcedureResult>}
  */
-const exec = async (sp, args) => {
-    return Promise.resolve('pending');
+const exec = async (sp, args = []) => {
+    const names = args.map(arg => ':' + arg.name).join(', ');
+    const values = args.reduce((acc, cur) => {
+        acc[cur.name] = {
+            val: cur.value,
+            dir: cur.output ? db.BIND_INOUT : db.BIND_IN
+        };
+        return acc;
+    }, {});
+    return execute(`BEGIN ${sp}(${names}); END;`, values).then(result => {
+        return Promise.resolve({
+            output: result.outBinds
+        });
+    });
 };
 
 /**
@@ -86,8 +99,8 @@ const selectValue = async (field, table, filterBy, value) => {
 };
 
 function execute(query) {
-    console.log(query);
-    return pool.request().execute(query);
+    // console.log(query);
+    return pool.request().execute(...arguments);
 }
 
 function toLowerCaseKeys(row) {

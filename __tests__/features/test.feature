@@ -134,7 +134,7 @@ Feature: judo works
 
     Then variable uppercase should equal SQL
 
-  @ignore
+  @skip
   Scenario: store the output of the last insert in $
 
     Given a table my_test_table
@@ -147,7 +147,7 @@ Feature: judo works
       | B         |
     Then variable $>1>my_letter should equal B
 
-  @ignore
+  @skip
   Scenario: store the output of insert in table alias
 
     Given a table my_test_table $table
@@ -159,7 +159,9 @@ Feature: judo works
 
     When I execute my_procedure
 
-    Then variable $returned should equal 1
+    Then my_test_table should have
+      | my_letter |
+      | a         |
 
 
   Scenario: i pass output values to sp
@@ -171,4 +173,8 @@ Feature: judo works
     """
 
     Then variable $result should equal 1
-    And variable $returned should equal 1
+    And my_test_table should have
+      | my_number |
+      | 1         |
+
+
