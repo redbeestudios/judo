@@ -8,6 +8,9 @@ const Cli = require('cucumber').Cli;
 module.exports.run = (options) => {
     const config = require('./runtime/config')(options);
 
+    if (!config.judo.engine)
+        return Promise.reject(chalk.red('No engine detected. Please configure one either with cli args, env_vars, or file. ie: --judo.engine mssql'));
+
     if (config.judo.sandbox)
         console.log(chalk.red.bold('\nJudo is running in Sandbox mode. All changes will be committed!\n'));
 
