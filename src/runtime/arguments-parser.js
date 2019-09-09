@@ -1,7 +1,7 @@
 const transform = require('../runtime/transform-data');
 
 // const UNSUPPORTED_TYPE = ['VarBinary','TVP'];
-const SUPPORTED_TYPES = ['NVarChar', 'Int', 'Bit', 'DateTime'];
+const SUPPORTED_TYPES = ['NVarChar', 'Int', 'Bit', 'DateTime', 'Decimal', 'Float'];
 
 /**
  * @typedef {Object} ProcedureArgument
@@ -98,7 +98,7 @@ function parseName(str) {
 /**
  * Parse the type of the argument (with OUTPUT removed)
  *
- * Argument should be the word between Name and Value, between two whitespaces
+ * Type should be the word between Name and Value, between two whitespaces
  *
  * @param {string} str
  * @returns {null|string}

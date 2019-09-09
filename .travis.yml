@@ -19,6 +19,7 @@ install:
 cache:
   directories:
     - node_modules
+    - /var/lib/docker
 
 before_script:
   - docker run -d -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Password01' --net host -v $PWD/__tests__/features/:/home/ --name sql-server microsoft/mssql-server-linux:2017-CU1

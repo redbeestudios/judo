@@ -29,7 +29,7 @@ const exec = async (sp, args) => {
     if (args) {
         args.forEach(arg => {
             if (arg.type)
-                req[arg.output ? 'output' : 'input'](arg.name, sql[arg.type], arg.value);
+                req[arg.output ? 'output' : 'input'](arg.name, sql.Decimal(12,2), arg.value);
             else {
                 if (arg.output)
                     req.output(arg.name, null, arg.value);

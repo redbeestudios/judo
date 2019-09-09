@@ -41,7 +41,7 @@ function rollbackTransaction() {
  * @returns {Promise<Transaction>}
  */
 function commitTransaction() {
-    return globalTransaction.rollback();
+    return globalTransaction.commit();
 }
 
 /**
