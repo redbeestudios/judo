@@ -15,7 +15,7 @@ module.exports = function assertEquals(expected, actual, message) {
     if (!equals)
         return Promise.reject(
             new JudoError(
-                message || `Expected ${expected} but got ${actual}`,
+                message || buildMessage(expected, actual),
                 {
                     actual,
                     expected
@@ -25,3 +25,7 @@ module.exports = function assertEquals(expected, actual, message) {
 
     return Promise.resolve(equals);
 };
+
+function buildMessage(expected, actual) {
+    return `Expected ${expected instanceof Array ? expected.length + ' rows' : expected} and got ${actual instanceof Array ? actual.length + ' rows' : actual}`;
+}

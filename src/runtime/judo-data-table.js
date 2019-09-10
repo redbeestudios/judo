@@ -27,4 +27,8 @@ module.exports = class JudoDataTable {
         return this.table;
     }
 
+    criteria () {
+        return this.table;
+    }
+
 };
