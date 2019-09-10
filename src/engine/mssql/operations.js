@@ -2,6 +2,7 @@ const sql = require('mssql');
 const {request} = require('./pool');
 const insertStatement = require('./statements/insert-output');
 const selectStatement = require('./statements/select');
+const whereEachRow = require('./statements/helpers/where-each-row');
 const deleteStatement = require('./statements/delete');
 const selectValueStatement = require('./statements/select-value');
 
@@ -12,10 +13,10 @@ const selectValueStatement = require('./statements/select-value');
  * @param {Array<Object<string, *>>} data
  * @returns {Promise<void>}
  */
-const insertInto = async (table, data) => {
+function insertInto(table, data) {
     return query(insertStatement(table, data))
         .then(result => Promise.resolve(result.recordset));
-};
+}
 
 /**
  * Execute a SQL Stored Procedure
@@ -24,7 +25,7 @@ const insertInto = async (table, data) => {
  * @param {Array<ProcedureArgument>} [args]
  * @returns {Promise<ProcedureResult>}
  */
-const exec = async (sp, args) => {
+function exec(sp, args) {
     const req = request();
     if (args) {
         args.forEach(arg => {
@@ -44,7 +45,8 @@ const exec = async (sp, args) => {
             output: result.output
         };
     });
-};
+}
+
 /**
  * Run a SELECT against a table
  *
@@ -53,10 +55,24 @@ const exec = async (sp, args) => {
  * @param {Array<string>} [order]
  * @returns {Promise<void>}
  */
-const selectFrom = async (table, fields, order) => {
-    return query(selectStatement(table, fields, order))
+function selectFrom(table, fields, order) {
+    return query(selectStatement(table, fields, null, order))
         .then(result => result.recordset);
-};
+}
+
+/**
+ * Run a SELECT against a table
+ *
+ * @param {string} table
+ * @param {Array<string>} fields
+ * @param {Array<Object<string, *>>} criteria
+ * @param {Array<string>} order
+ * @returns {Promise<void>}
+ */
+function selectFromWhere(table, fields, criteria, order) {
+    return query(selectStatement(table, fields, whereEachRow(criteria), order))
+        .then(result => result.recordset);
+}
 
 /**
  * Delete all data from a table
@@ -64,10 +80,10 @@ const selectFrom = async (table, fields, order) => {
  * @param {string} table
  * @returns {Promise<Request|Promise>}
  */
-const deleteFrom = async (table) => {
+function deleteFrom(table) {
     return query(deleteStatement(table))
         .then(result => Promise.resolve(result.rowsAffected[0]));
-};
+}
 
 /**
  * Call a custom or native SQL function
@@ -75,12 +91,12 @@ const deleteFrom = async (table) => {
  * @param {string} func
  * @returns {Promise<*|*>}
  */
-const callFunction = async (func) => {
+function callFunction(func) {
     return query(`SELECT ${func} as r;`)
         .then(result => {
             return Promise.resolve(result.recordset[0].r);
         });
-};
+}
 
 /**
  * Select a single value from a table based on a single equals condition
@@ -91,14 +107,14 @@ const callFunction = async (func) => {
  * @param {string} value
  * @returns {Promise<* | *>}
  */
-const selectValue = async (field, table, filterBy, value) => {
+function selectValue(field, table, filterBy, value) {
     return query(selectValueStatement(field, table, filterBy, value))
         .then(result => {
             if (!result.recordset.length)
                 return Promise.reject(`No records found by ${filterBy} = ${value}`);
             return Promise.resolve(result.recordset[0][field]);
         });
-};
+}
 
 /**
  * Run a custom SQL QUERY
@@ -106,14 +122,15 @@ const selectValue = async (field, table, filterBy, value) => {
  * @param query
  * @returns {Promise<*>}
  */
-const query = async (query) => {
+function query(query) {
     return request().query(query);
-};
+}
 
 module.exports = {
     exec,
     insertInto,
     selectFrom,
+    selectFromWhere,
     deleteFrom,
     callFunction,
     selectValue

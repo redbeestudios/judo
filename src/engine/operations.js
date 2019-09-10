@@ -19,7 +19,7 @@ const operations = require(`./${CONFIG.judo.engine}/operations`);
  * @param {Array<Object<string, *>>} data
  * @returns {Promise<void>}
  */
-async function insertInto(table, data) {
+function insertInto(table, data) {
     return operations.insertInto(table, data);
 }
 
@@ -30,7 +30,7 @@ async function insertInto(table, data) {
  * @param {Array<ProcedureArgument>} [args]
  * @returns {Promise<ProcedureResult>}
  */
-async function exec(sp, args) {
+function exec(sp, args) {
     return operations.exec(sp, args);
 }
 
@@ -42,8 +42,22 @@ async function exec(sp, args) {
  * @param {Array<string>} [order]
  * @returns {Promise<void>}
  */
-async function selectFrom(table, fields, order) {
+function selectFrom(table, fields, order) {
     return operations.selectFrom(table, fields, order);
+}
+
+/**
+ * Run a SELECT against a table but only the rows where all columns match the defined
+ * in table arg
+ *
+ * @param {string} table
+ * @param {Array<string>} fields
+ * @param {Array<Object<string, *>>} criteria
+ * @param {Array<string>} order
+ * @returns {Promise<void>}
+ */
+function selectFromWhere(table, fields, criteria, order) {
+    return operations.selectFromWhere(table, fields, criteria, order);
 }
 
 /**
@@ -52,7 +66,7 @@ async function selectFrom(table, fields, order) {
  * @param {string} table
  * @returns {Promise<Request|Promise>}
  */
-async function deleteFrom(table) {
+function deleteFrom(table) {
     return operations.deleteFrom(table);
 }
 
@@ -62,7 +76,7 @@ async function deleteFrom(table) {
  * @param {string} func
  * @returns {Promise<*|*>}
  */
-async function callFunction(func) {
+function callFunction(func) {
     return operations.callFunction(func);
 }
 
@@ -75,7 +89,7 @@ async function callFunction(func) {
  * @param {string} value
  * @returns {Promise<* | *>}
  */
-async function selectValue(field, table, filterBy, value) {
+function selectValue(field, table, filterBy, value) {
     return operations.selectValue(field, table, filterBy, value);
 }
 
@@ -83,6 +97,7 @@ module.exports = {
     exec,
     insertInto,
     selectFrom,
+    selectFromWhere,
     deleteFrom,
     callFunction,
     selectValue

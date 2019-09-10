@@ -69,6 +69,22 @@ Feature: judo works
       | 0          |
       | false      |
 
+  Scenario: validate a table contains just one row that equals each row in data table
+
+    Given a table my_test_table
+      | my_number | my_letter |
+      | 1         | A         |
+      | 2         | B         |
+      | 3         | C         |
+      | 4         | D         |
+      | 5         | E         |
+      | 6         | F         |
+
+    Then my_test_table should contain once
+      | my_number | my_letter |
+      | 2         | B         |
+      | 5         | E         |
+
   Scenario: store the output of the last insert in $
 
     Given a table my_test_table
