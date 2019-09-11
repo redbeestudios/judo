@@ -42,9 +42,7 @@ describe('Parse stored procedure arguments from docType', function () {
 
     test('should trow an exception when an invalid type is passed', function () {
         expect(() => argumentsParser('my_letter Char 1'))
-            .toThrowError('Char is not a valid type. Use any of: NVarChar, Int, Bit, DateTime');
-        expect(() => argumentsParser('my_letter Something 1'))
-            .toThrowError('Something is not a valid type. Use any of: NVarChar, Int, Bit, DateTime');
+            .toThrowError('Char is not a valid type. Use any of: NVarChar, Int, Bit, DateTime, Decimal, Float');
     });
 
     test('should parse an output argument given an OUTPUT at the end', function () {
@@ -85,6 +83,12 @@ describe('Parse stored procedure arguments from docType', function () {
 
         expect(argumentsParser.call(this, `my_arg Int stored`)).toEqual([
             {name: 'my_arg', type: 'Int', value: 'value'}
+        ]);
+    });
+
+    test('should parse type with arguments correctly', function () {
+        expect(argumentsParser('my_arg Decimal(12,2) 10.5 OUTPUT')).toEqual([
+            {name: 'my_arg', value: 10.5, type: 'Decimal', typeArguments: [12, 2], output: true}
         ]);
     });
 

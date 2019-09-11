@@ -7,6 +7,7 @@ const SUPPORTED_TYPES = ['NVarChar', 'Int', 'Bit', 'DateTime', 'Decimal', 'Float
  * @typedef {Object} ProcedureArgument
  * @property {string} name
  * @property {string} [type]
+ * @property {Array<*>} [typeArgs]
  * @property {*} value
  * @property {boolean} [output]
  */
@@ -57,20 +58,28 @@ function unsupportedType(line) {
  * @returns {ProcedureArgument}
  */
 function parseLine(str) {
-    const isOutput = !!str.match(/OUTPUT$/g);
-    if (isOutput)
-        str = removeOUTPUT(str);
+    const words = str.split(' ');
 
-    const name = parseName(str),
-        type = parseType(str),
-        value = parseValue(str, name, type);
-
-    return {
-        name,
-        value,
-        ...(type && {type}),
-        ...(isOutput && {output: true})
-    };
+    if (words.length === 2) {
+        return {
+            name: words[0],
+            value: words[1]
+        };
+    } else if (words.length === 3) {
+        if (words[2] === 'OUTPUT') {
+            return {
+                name: words[0],
+                value: words[1],
+                output: true
+            };
+        } else {
+            return {
+                name: words[0],
+                value: words[2],
+                ...parseType(words[1])
+            };
+        }
+    }
 }
 
 /**
@@ -104,7 +113,8 @@ function parseName(str) {
  * @returns {null|string}
  */
 function parseType(str) {
-    return str.match(/\s\w+\s/gi) && str.match(/\s\w+\s/gi)[0].trim();
+    const r = new RegExp(/\s\w+\s/gi);
+    return str.match(r) && str.match(r)[0].trim();
 }
 
 /**

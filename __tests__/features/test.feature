@@ -1,6 +1,5 @@
 Feature: judo works
 
-
   Background: setup context
     Given my_test_table is empty
 
@@ -155,25 +154,25 @@ Feature: judo works
 
     When I execute my_sp with args:
     """
-    cant Decimal 2.123
-    result Decimal 2.10 OUTPUT
+    cant 17
+    result Decimal 2.56 OUTPUT
     """
 
     Then my_test_table should have
-      | my_decimal |
-      | 2.12       |
+      | my_number | my_decimal |
+      | 17        | 2.56       |
 
-    Then variable $result should equal 2.12
+    Then variable $result should equal 43.52
     And variable $returned should equal 1
 
-#  Scenario: i test a sql function
-#
-#    When I call UPPER('sql') as uppercase
-#
-#    Then variable uppercase should equal SQL
-#
-#  Scenario: i test a function
-#
-#    When I call IIF(1 = 1, 0, 1) as res
-#
-#    Then variable res should equal 0
+  Scenario: i test a sql function
+
+    When I call UPPER('sql') as uppercase
+
+    Then variable uppercase should equal SQL
+
+  Scenario: i test a function
+
+    When I call IIF(1 = 1, 0, 1) as res
+
+    Then variable res should equal 0
