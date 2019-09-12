@@ -51,7 +51,7 @@ async function executeRoutine(storedProcedure, args) {
     this.$returned = result.returnValue;
 
     Object.keys(result.output || {})
-        .forEach(key => this['$' + key] = transform.call(this, result.output[key]));
+        .forEach(key => this['$' + key] = result.output[key]);
 
     return result;
 }

@@ -18,9 +18,6 @@ describe('transform data from cucumber data tables', function () {
     });
 
     test('should transform a null or undefined correctly', function () {
-        // noinspection JSCheckFunctionSignatures
-        expect(transform()).toEqual(null);
-        expect(transform(null)).toEqual(null);
         expect(transform('null')).toEqual(null);
         expect(transform('undefined')).toEqual(undefined);
         expect(transform('NULL')).toEqual(null);

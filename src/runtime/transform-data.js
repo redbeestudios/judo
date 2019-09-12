@@ -29,7 +29,7 @@ function transformCollection(obj) {
  * @returns {*}
  */
 function transformOne(value) {
-    if (typeof value !== 'string' && (!value || value === 'NULL')) {
+    if (value === 'NULL') {
         value = null;
     } else if (value.includes('=')) {
         value = transformAssignment.call(this, value);
