@@ -16,6 +16,14 @@ describe('Create a concatenation of ORs for each row in data', function () {
         ])).toEqual('(my_letter = \'ABC\')');
     });
 
+    test('should use IS NULL when value is null given one row with one column', function () {
+        expect(whereEachRow([
+            {
+                my_letter: null
+            }
+        ])).toEqual('(my_letter IS NULL)');
+    });
+
     test('should separate columns with ANDs given one row with many columns', function () {
         expect(whereEachRow([
             {
@@ -55,7 +63,7 @@ describe('Create a concatenation of ORs for each row in data', function () {
             },
             {
                 my_letter: 'DEF',
-                my_number: 2
+                my_number: null
             },
             {
                 my_letter: 'GHI',
@@ -63,7 +71,7 @@ describe('Create a concatenation of ORs for each row in data', function () {
             }
         ])).toEqual(
             '(my_letter = \'ABC\' AND my_number = 1) OR ' +
-            '(my_letter = \'DEF\' AND my_number = 2) OR ' +
+            '(my_letter = \'DEF\' AND my_number IS NULL) OR ' +
             '(my_letter = \'GHI\' AND my_number = 3)'
         );
     });

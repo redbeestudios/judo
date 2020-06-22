@@ -29,22 +29,20 @@ function transformCollection(obj) {
  * @returns {*}
  */
 function transformOne(value) {
-    try {
+    if (value === 'NULL') {
+        value = null;
+    } else if (value.includes('=')) {
+        value = transformAssignment.call(this, value);
+    } else if (this[value] !== undefined) {
+        value = this[value];
+    } else if (value.indexOf('$') === 0) {
+        value = transformTableAccess.call(this, value);
+    } else if (value.match(/\$\w+/)) {
+        value = transformVariablesInString.call(this, value);
+    } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss.SSS', 'YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
+        value = moment.utc(value).toDate();
+    } else {
         value = executeJs(value);
-    } catch (e) {
-        if (value === 'NULL') {
-            value = null;
-        } else if (value.includes('=')) {
-            value = transformAssignment.call(this, value);
-        } else if (this[value] !== undefined) {
-            value = this[value];
-        } else if (value.indexOf('$') === 0) {
-            value = transformTableAccess.call(this, value);
-        } else if (value.match(/\$\w+/)) {
-            value = transformVariablesInString.call(this, value);
-        } else if (isNaN(value) && moment(value, ['YYYY-MM-DD HH:mm:ss.SSS', 'YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'], true).isValid()) {
-            value = moment.utc(value).toDate();
-        }
     }
     return value;
 }
@@ -59,7 +57,11 @@ function transformOne(value) {
  * @returns {*}
  */
 function executeJs(value) {
-    return Function('"use strict";return (' + value + ')')();
+    try {
+        return Function('"use strict";return (' + value + ')')();
+    } catch (e) {
+        return value;
+    }
 }
 
 /**

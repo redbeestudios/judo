@@ -18,9 +18,6 @@ describe('transform data from cucumber data tables', function () {
     });
 
     test('should transform a null or undefined correctly', function () {
-        // noinspection JSCheckFunctionSignatures
-        expect(transform()).toEqual(undefined);
-        expect(transform(null)).toEqual(null);
         expect(transform('null')).toEqual(null);
         expect(transform('undefined')).toEqual(undefined);
         expect(transform('NULL')).toEqual(null);
@@ -37,15 +34,30 @@ describe('transform data from cucumber data tables', function () {
         expect(transform('\'\'')).toEqual('');
     });
 
-    test('should transform a date value correctly', function () {
+    test('should transform a datetime value correctly', function () {
         spyOn(moment, 'utc').and.returnValue({
             toDate: () => new Date('2019-01-01 00:10:00')
         });
         expect(transform('2019-01-01 00:10:00')).toEqual(new Date('2019-01-01 00:10:00'));
     });
 
+    test('should transform a date value correctly', function () {
+        spyOn(moment, 'utc').and.returnValue({
+            toDate: () => new Date('2019-01-01')
+        });
+        expect(transform('2019-01-01')).toEqual(new Date('2019-01-01'));
+    });
+
+    test('should transform a date (weird case) value correctly', function () {
+        spyOn(moment, 'utc').and.returnValue({
+            toDate: () => new Date('2019-12-31')
+        });
+        expect(transform('2019-12-31')).toEqual(new Date('2019-12-31'));
+    });
+
     test('should transform a operation correctly', function () {
         expect(transform('2 + 2')).toEqual(4);
+        expect(transform('3 * 2')).toEqual(6);
     });
 
     test('should transform an access to a variable correctly', function () {

@@ -33,6 +33,6 @@ const toAnds = (acc, cur) => {
  * @returns {*}
  */
 const toEquals = (acc2, key, cur) => {
-    acc2.push(`${key} = ${toSQLValue(cur[key])}`);
+    acc2.push(`${key} ${cur[key] ? '=' : 'IS'} ${toSQLValue(cur[key])}`);
     return acc2;
 };

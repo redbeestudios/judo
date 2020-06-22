@@ -16,9 +16,9 @@ describe('assert equality on two values', () => {
             }]));
 
             const result = await validateTableExactlyStep('my_table', {
-                hashes: () => [{a: 1}],
-                raw: () => [['a'], [1]],
-                rawTable: [['a'], [1]]
+                hashes: () => [{a: '1'}],
+                raw: () => [['a'], ['1']],
+                rawTable: [['a'], ['1']]
             });
 
             expect(result).toBe(true);
@@ -31,9 +31,9 @@ describe('assert equality on two values', () => {
         }]));
 
         validateTableExactlyStep('my_table', {
-            hashes: () => [{a: 1}],
-            raw: () => [['a'], [1]],
-            rawTable: [['a'], [1]]
+            hashes: () => [{a: '1'}],
+            raw: () => [['a'], ['1']],
+            rawTable: [['a'], ['1']]
         }).catch(
             error => expect(error).toBeInstanceOf(Error));
     });
