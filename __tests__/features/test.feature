@@ -1,6 +1,5 @@
 Feature: judo works
 
-
   Background: setup context
     Given my_test_table is empty
 
@@ -155,11 +154,15 @@ Feature: judo works
 
     When I execute my_sp with args:
     """
-    cant 1
-    result 2 OUTPUT
+    cant 17
+    result Decimal(12,2) 2.56 OUTPUT
     """
 
-    Then variable $result should equal 1
+    Then my_test_table should have
+      | my_number | my_decimal |
+      | 17        | 2.56       |
+
+    And variable $result should equal 43.52
     And variable $returned should equal 1
 
   Scenario: i test a sql function

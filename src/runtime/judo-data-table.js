@@ -15,19 +15,19 @@ module.exports = class JudoDataTable {
         this.table = dataTable.hashes();
     }
 
-    fields () {
+    fields() {
         return this.headers.fields;
     }
 
-    order () {
+    order() {
         return this.headers.order;
     }
 
-    body () {
+    body() {
         return this.table;
     }
 
-    criteria () {
+    criteria() {
         return this.table;
     }
 

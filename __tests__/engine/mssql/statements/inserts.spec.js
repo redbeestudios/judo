@@ -52,7 +52,7 @@ describe('Create mssql inserts from a collection of objects', function () {
         expect(inserts('test_table', [
             {value: 1},
             {value: 1},
-            {value: 1},
+            {value: 1}
         ])).toEqual('INSERT INTO test_table (value)\nVALUES\n(1),\n(1),\n(1);');
     });
 
@@ -60,7 +60,7 @@ describe('Create mssql inserts from a collection of objects', function () {
         expect(inserts('test_table', [
             {value: 1},
             {value: 1},
-            {value: 1},
+            {value: 1}
         ], 2)).toEqual('INSERT INTO test_table (value)\nVALUES\n(1),\n(1);' +
             '\n' +
             'INSERT INTO test_table (value)\nVALUES\n(1);');
@@ -72,7 +72,7 @@ describe('Create mssql inserts from a collection of objects', function () {
             {value: 1},
             {value: 1},
             {value: 1},
-            {value: 1},
+            {value: 1}
         ], 2)).toEqual(
             'INSERT INTO test_table (value)\nVALUES\n(1),\n(1);' +
             '\n' +
