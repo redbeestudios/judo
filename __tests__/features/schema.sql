@@ -1,12 +1,11 @@
-
 CREATE TABLE my_test_table
 (
-    my_letter  VARCHAR,
-    my_string  VARCHAR(500),
-    my_number  INT,
-    my_boolean BIT,
-    my_date    DATETIME,
-    my_decimal DECIMAL(12, 2)
+  my_letter  VARCHAR,
+  my_string  VARCHAR(500),
+  my_number  INT,
+  my_boolean BIT,
+  my_date    DATETIME,
+  my_decimal DECIMAL(12, 2)
 );
 GO
 

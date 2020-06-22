@@ -26,24 +26,37 @@ function insertInto(table, data) {
  * @returns {Promise<ProcedureResult>}
  */
 function exec(sp, args) {
-    const req = request();
-    if (args) {
-        args.forEach(arg => {
-            if (arg.type)
-                req[arg.output ? 'output' : 'input'](arg.name, arg.args ? sql[arg.type](arg.args) : sql[arg.type], arg.value);
-            else {
-                if (arg.output)
-                    req.output(arg.name, null, arg.value);
-                else
-                    req.input(arg.name, arg.value);
-            }
-        });
-    }
-    return req.execute(sp).then(result => {
-        return {
-            returnValue: result.returnValue,
-            output: result.output
-        };
+    return new Promise((resolve, reject) => {
+        const req = request();
+        if (args) {
+            args.forEach(arg => {
+                if (arg.type && !sql.TYPES[arg.type])
+                    reject(new Error('Invalid argument type Flench.'));
+
+                if (arg.type)
+                    req[arg.output ? 'output' : 'input'](
+                        arg.name,
+                        arg.typeArguments ? sql.TYPES[arg.type](...arg.typeArguments) : sql.TYPES[arg.type](),
+                        arg.value
+                    );
+                else {
+                    if (arg.output)
+                        req.output(arg.name, null, arg.value);
+                    else
+                        req.input(arg.name, arg.value);
+                }
+            });
+        }
+        resolve(
+            req.execute(sp)
+                .then(result => {
+                        return {
+                            returnValue: result.returnValue,
+                            output: result.output
+                        };
+                    }
+                )
+        );
     });
 }
 

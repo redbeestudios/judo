@@ -88,7 +88,7 @@ describe('Parse stored procedure arguments from docType', function () {
 
     test('should parse type with arguments correctly', function () {
         expect(argumentsParser('my_arg Decimal(12,2) 10.5 OUTPUT')).toEqual([
-            {name: 'my_arg', value: 10.5, type: 'Decimal', typeArguments: [12, 2], output: true}
+            {name: 'my_arg', value: 10.5, type: 'Decimal', typeArguments: ['12', '2'], output: true}
         ]);
     });
 

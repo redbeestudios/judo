@@ -71,7 +71,7 @@ describe('Create mssql inserts that output the result from a collection of objec
             {value: 1},
             {value: 1},
             {value: 1},
-            {value: 1},
+            {value: 1}
         ], 2)).toEqual(
             'INSERT INTO test_table (value) OUTPUT inserted.*\nSELECT 1\nUNION ALL SELECT 1;' +
             '\n' +

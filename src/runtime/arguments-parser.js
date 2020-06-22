@@ -7,7 +7,7 @@ const SUPPORTED_TYPES = ['NVarChar', 'Int', 'Bit', 'DateTime', 'Decimal', 'Float
  * @typedef {Object} ProcedureArgument
  * @property {string} name
  * @property {string} [type]
- * @property {Array<*>} [typeArgs]
+ * @property {Array<*>} [typeArguments]
  * @property {*} value
  * @property {boolean} [output]
  */
@@ -60,73 +60,49 @@ function unsupportedType(line) {
 function parseLine(str) {
     const words = str.split(' ');
 
-    if (words.length === 2) {
-        return {
-            name: words[0],
-            value: words[1]
-        };
-    } else if (words.length === 3) {
-        if (words[2] === 'OUTPUT') {
+    switch (words.length) {
+        case 2:
             return {
                 name: words[0],
-                value: words[1],
+                value: words[1]
+            };
+        case 3:
+            if (words[2] === 'OUTPUT') {
+                return {
+                    name: words[0],
+                    value: words[1],
+                    output: true
+                };
+            } else {
+                return {
+                    name: words[0],
+                    ...parseType(words[1]),
+                    value: words[2]
+                };
+            }
+        case 4:
+            return {
+                name: words[0],
+                ...parseType(words[1]),
+                value: words[2],
                 output: true
             };
-        } else {
-            return {
-                name: words[0],
-                value: words[2],
-                ...parseType(words[1])
-            };
-        }
+
     }
 }
 
 /**
- * Remove 'OUTPUT' from string
- *
- * @param {string} str
- * @returns {string}
- */
-function removeOUTPUT(str) {
-    return str.replace('OUTPUT', '').trim();
-}
-
-/**
- * Parse the name of the argument (with OUTPUT removed)
- *
- * Name should be the first word in the line, before any whitespace
- *
- * @param {string} str
- * @returns {string}
- */
-function parseName(str) {
-    return str.slice(0, str.indexOf(' ')).trim();
-}
-
-/**
- * Parse the type of the argument (with OUTPUT removed)
+ * Parse the type of the argument
  *
  * Type should be the word between Name and Value, between two whitespaces
  *
  * @param {string} str
- * @returns {null|string}
+ * @returns {Object}
  */
 function parseType(str) {
-    const r = new RegExp(/\s\w+\s/gi);
-    return str.match(r) && str.match(r)[0].trim();
-}
-
-/**
- * Parse the value of the argument (with OUTPUT removed)
- *
- * Value should be the last word in the line, after all whitespaces
- *
- * @param {string} str
- * @param {string} name
- * @param {string} type
- * @returns {string}
- */
-function parseValue(str, name, type) {
-    return str.replace(name, '').replace(type || '', '').trim();
+    const r = str.match(/^(\w+)((\((\d+,\d+)\))|)$/i);
+    return (r && {
+        type: r[1],
+        typeArguments: r[4] && r[4].split(',')
+    }) || {};
 }

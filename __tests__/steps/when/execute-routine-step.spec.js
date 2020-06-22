@@ -13,8 +13,8 @@ describe('execute a routine', () => {
     test('should execute a routine defined in the database',
         async () => {
             execMock.mockImplementation(() => Promise.resolve({
-                    returnValue: 'MY RESULT'
-                }));
+                returnValue: 'MY RESULT'
+            }));
 
             const result = await executeRoutineStep.call(this, 'my_routine');
 
@@ -43,8 +43,8 @@ describe('execute a routine', () => {
                 ]));
 
             execMock.mockImplementation(() => Promise.resolve({
-                    returnValue: 'MY RESULT'
-                }));
+                returnValue: 'MY RESULT'
+            }));
 
             const result = await executeRoutineWithArgsStep.call(this, 'my_routine', 'my_arg 1');
 
@@ -67,11 +67,11 @@ describe('execute a routine', () => {
                 ]));
 
             execMock.mockImplementation(() => Promise.resolve({
-                    returnValue: 'MY RESULT',
-                    output: {
-                        my_arg: 2
-                    }
-                }));
+                returnValue: 'MY RESULT',
+                output: {
+                    my_arg: 2
+                }
+            }));
 
             const result = await executeRoutineWithArgsStep.call(this, 'my_routine', 'my_arg 1 OUTPUT');
 
@@ -89,7 +89,7 @@ describe('execute a routine', () => {
     test('should propagate the error when calling with args', () => {
         execMock.mockImplementation(() => Promise.reject('An error'));
 
-        return executeRoutineWithArgsStep('my_routine', 'alias')
+        return executeRoutineWithArgsStep('my_routine', 'alias 10')
             .catch(e => expect(e).toBe('An error'));
     });
 });
