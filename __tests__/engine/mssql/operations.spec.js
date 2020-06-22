@@ -1,6 +1,5 @@
 const sql = require('mssql');
 const ops = require('../../../src/engine/mssql/operations');
-const moment = require('moment');
 
 jest.mock('../../../src/engine/mssql/pool');
 const {request: requestMock} = require('../../../src/engine/mssql/pool');
